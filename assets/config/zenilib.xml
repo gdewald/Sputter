@@ -49,16 +49,15 @@
         <Mipmapping>1</Mipmapping>
     </Textures>
     <Video>
+        <!--<API>DX9</API>-->
+        <!--<API>OpenGL</API>-->
         <!--<API>Disabled</API>-->
-        <!--<API>Direct3D 9</API>-->
-        <!--<API>OpenGL Fixed</API>-->
-        <!--<API>OpenGL Shader</API>-->
-        <API>OpenGL Shader</API>
+        <API>OpenGL Fixed</API>
         <Full_Screen>0</Full_Screen>
         <Multisampling>0</Multisampling>
         <Resolution>
-            <Width>640</Width>
-            <Height>480</Height>
+            <Width>1276</Width>
+            <Height>737</Height>
         </Resolution>
         <Vertical_Sync>1</Vertical_Sync>
     </Video>
