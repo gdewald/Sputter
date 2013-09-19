@@ -19,7 +19,7 @@ using namespace Zeni;
 class Bootstrap {
   class Gamestate_One_Initializer : public Gamestate_Zero_Initializer {
     virtual Gamestate_Base * operator()() {
-      Window::set_title("zenilib Application");
+      Window::set_title("Putt-putt Hell");
 
       get_Joysticks();
       get_Video();
@@ -28,7 +28,7 @@ class Bootstrap {
       get_Sounds();
       get_Game().joy_mouse.enabled = true;
 
-      return new Title_State<Play_State, Instructions_State>("Zenipex Library\nApplication");
+      return new Title_State<Play_State, Instructions_State>("Putt-putt\nHell");
     }
   } m_goi;
 
