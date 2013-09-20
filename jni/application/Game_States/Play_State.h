@@ -17,6 +17,6 @@ private:
 	void on_key(const SDL_KeyboardEvent& event);
 	void on_push();
 	void on_pop();
-	void update();
+	void perform_logic();
 	void render();
 };

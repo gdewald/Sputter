@@ -24,7 +24,7 @@ void Play_State::on_pop() {
 	//get_Game().joy_mouse.enabled = true;
 }
 
-void Play_State::update() {
+void Play_State::perform_logic() {
 	Game_Model::get_instance().update();
 }
 
