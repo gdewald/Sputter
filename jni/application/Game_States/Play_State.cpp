@@ -1,35 +1,94 @@
 #include "Play_State.h"
-#include "Game_Model.h"
 #include <list>
 
 using namespace Zeni;
 using namespace std;
 
-void Play_State::on_key(const SDL_KeyboardEvent& event) {
-	//switch (event.keysym.sym) {
-	//case SDLK_LEFT:
-	//	Game_Model::get_instance().
-	//}
+Play_State::Play_State() {
+	set_pausable(true);
+
+	// Inititalize the private members
+	ball = new Ball(Point2f(45.0f, 45.0f));
+	controller = new Controller(ball);
+
+	// Map the joystick buttons
+	set_action(Zeni_Input_ID(SDL_KEYDOWN, SDLK_ESCAPE), 1);
+	set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, 7), 1);
+	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_X /* x-axis */), 2);
+	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_Y /* y-axis */), 3);
+	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_THUMB_X), 4);
+	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_TRIGGER), 5);
+	set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, 1), 6);
 }
 
 void Play_State::on_push() {
-	//get_Window().mouse_grab(true);
-	get_Window().mouse_hide(false);
-	//get_Game().joy_mouse.enabled = false;
+	get_Game().joy_mouse.enabled = false;
+	get_Window().mouse_hide(true);
 }
 
 void Play_State::on_pop() {
-	//get_Window().mouse_grab(false);
+	get_Game().joy_mouse.enabled = true;
 	get_Window().mouse_hide(false);
-	//get_Game().joy_mouse.enabled = true;
+}
+void Play_State::on_cover() {
+	get_Game().joy_mouse.enabled = true;
+	get_Window().mouse_hide(false);
+}
+
+void Play_State::on_uncover() {
+	get_Game().joy_mouse.enabled = false;
+	get_Window().mouse_hide(true);
+}
+
+void Play_State::on_event(const Zeni_Input_ID &, const float &confidence, const int &action) {
+	switch (action) {
+	case 1:
+		if (confidence == 1.0f) {
+			Game &game = get_Game();
+			game.push_state(new Popup_Menu_State);
+		}
+		break;
+
+	case 2:
+		controller->set_x(confidence);
+		break;
+
+	case 3:
+		controller->set_y(confidence);
+		break;
+
+	case 4:
+		//spread = 3.14f / 16 + (confidence + 1.0f)*3.14f / 8;
+		//range_mult = confidence + 1.0f;
+		controller->set_ltr(confidence);
+		break;
+
+	case 5:
+		//range_base = 5.0f + (confidence + 1.0f)*100.0f / 2;
+		controller->set_rtr(confidence);
+		break;
+
+	case 6:
+		controller->fire();
+		break;
+
+	default:
+		break;
+	}
 }
 
 void Play_State::perform_logic() {
-	Game_Model::get_instance().update();
+	SDL_Delay(5);
+	if (!ball->is_stopped())
+		ball->update();
 }
 
 void Play_State::render() {
 	Video& vr = get_Video();
 	Colors& cr = get_Colors();
-	Game_Model& model = Game_Model::get_instance();
+
+	ball->render();
+	if (ball->is_stopped())
+		controller->render();
+	//vr.set_2d(make_pair(Point2f(30.0f, 30.0f), Point2f(640.0f, 480.0f)), true);
 }
