@@ -41,7 +41,6 @@ The following things are unsupported:
     <filepath>textures/objects/ball_1_1.png</filepath>
     <tile>0</tile>
   </ball_1>
-<!--
   <grass_1>
     <filepath>textures/terrain/grass_1.png</filepath>
 	<tile>1</tile>
@@ -50,7 +49,6 @@ The following things are unsupported:
     <filepath>textures/terrain/hole_1.png</filepath>
 	<tile>1</tile>
   </hole_1>
--->
   <logo>
     <filepath>textures/logo.png</filepath>
 	<tile>0</tile>
