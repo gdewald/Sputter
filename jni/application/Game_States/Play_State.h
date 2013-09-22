@@ -9,6 +9,8 @@ class Play_State : public Gamestate_II {
 private:
 	Ball* ball;
 	Controller* controller;
+	Chronometer<Time> m_chrono;
+	float m_time_passed;
 
 public:
 	Play_State();

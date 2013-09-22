@@ -4,7 +4,7 @@
 using namespace Zeni;
 using namespace std;
 
-Play_State::Play_State() {
+Play_State::Play_State() : m_time_passed(0.0f) {
 	set_pausable(true);
 
 	// Inititalize the private members
@@ -24,11 +24,13 @@ Play_State::Play_State() {
 void Play_State::on_push() {
 	get_Game().joy_mouse.enabled = false;
 	get_Window().mouse_hide(true);
+	m_chrono.start();
 }
 
 void Play_State::on_pop() {
 	get_Game().joy_mouse.enabled = true;
 	get_Window().mouse_hide(false);
+	m_chrono.stop();
 }
 void Play_State::on_cover() {
 	get_Game().joy_mouse.enabled = true;
@@ -78,9 +80,13 @@ void Play_State::on_event(const Zeni_Input_ID &, const float &confidence, const 
 }
 
 void Play_State::perform_logic() {
+	const float time_passed = m_chrono.seconds();
+	const float time_step = time_passed - m_time_passed;
+	m_time_passed = time_passed;
+
 	SDL_Delay(5);
 	if (!ball->is_stopped())
-		ball->update();
+		ball->update(time_step);
 }
 
 void Play_State::render() {

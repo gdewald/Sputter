@@ -38,7 +38,7 @@ The following things are unsupported:
 -->
 <Textures>
   <ball_1>
-    <filepath>textures/objects/ball_1_1.png</filepath>
+    <filepath>textures/objects/ball_1.png</filepath>
     <tile>0</tile>
   </ball_1>
   <grass_1>

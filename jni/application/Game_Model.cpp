@@ -7,7 +7,7 @@ using namespace std;
 Game_Model* Game_Model::model;
 
 void Game_Model::initialize() {
-	b = new Ball();
+	b = new Ball(Point2f());
 }
 
 void Game_Model::update() {

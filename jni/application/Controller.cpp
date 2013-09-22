@@ -20,6 +20,7 @@ void Controller::fire() {
 
 void Controller::render() {
 	process_inputs();
+	ball->rotate(theta);
 
 	Video& vr = get_Video();
 	Colors& cr = get_Colors();
