@@ -2,10 +2,12 @@
 #include <zenilib.h>
 #include "../Controller.h"
 #include "../Game_Map/Level.h"
+#include "../Game_Objects/Wall.h"
 
 class Play_State : public Zeni::Gamestate_II {
 private:
 	Ball* ball;
+	Wall* wall;
 	Controller* controller;
 	Level* level;
 	Zeni::Chronometer<Zeni::Time> m_chrono;

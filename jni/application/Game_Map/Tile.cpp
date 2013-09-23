@@ -12,7 +12,7 @@ void Tile::render(Point2f ul, Point2f lr) {
 	Vertex2f_Texture v4 = Vertex2f_Texture(Point2f(ul.x, lr.y), Point2f(0.0f, 1.0f));
 
 	Quadrilateral<Vertex2f_Texture> quad = Quadrilateral<Vertex2f_Texture>(v1, v2, v3, v4);
-	Material mat = Material("grass_1");
+	Material mat = Material(TILE_STR[id]);
 	quad.fax_Material(&mat);
 
 	vr.render(quad);

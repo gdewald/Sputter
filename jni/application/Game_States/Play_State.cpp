@@ -12,6 +12,8 @@ Play_State::Play_State() : m_time_passed(0.0f) {
 	controller = new Controller(ball);
 	level = new Level();
 
+	wall = new Wall(Point2f(100.0f, 100.0f), "hole_1", 20.0f, 40.0f, 1.15f);
+
 	// Map the joystick buttons
 	set_action(Zeni_Input_ID(SDL_KEYDOWN, SDLK_ESCAPE), 1);
 	set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, 7), 1);
@@ -93,11 +95,25 @@ void Play_State::perform_logic() {
 void Play_State::render() {
 	Video& vr = get_Video();
 	Colors& cr = get_Colors();
-	level->render(Point2f(), get_Window().get_width(), get_Window().get_height());
+	vr.set_clear_Color(cr["blue"]);
+	level->render(ball->get_position(), get_Window().get_width(), get_Window().get_height());
 
 	ball->render();
 	if (ball->is_stopped())
 		controller->render();
 
-	//vr.set_2d(make_pair(ball->get_position(), Point2f(640.0f, 480.0f)), true);
+	//wall->render();
+
+	Window& window = get_Window();
+	Point2f camera_pos = ball->get_position();
+
+	//Camera stops following ball on edges
+	if (camera_pos.x < (window.get_width()/2)) camera_pos.x = window.get_width() / 2;
+	else if (camera_pos.x > level->get_width_px() - (window.get_width() / 2)) camera_pos.x = level->get_width_px() - (window.get_width() / 2);
+	if (camera_pos.y < (window.get_height()/2)) camera_pos.y = window.get_height() / 2;
+	else if (camera_pos.y > level->get_height_px() - (window.get_height() / 2)) camera_pos.y = level->get_height_px() - (window.get_height() / 2);
+
+	Point2f camera_ul = Point2f(camera_pos.x - (window.get_width() / 2), camera_pos.y - (window.get_height() / 2));
+	Point2f camera_lr = Point2f(camera_pos.x + (window.get_width() / 2), camera_pos.y + (window.get_height() / 2));
+	vr.set_2d(make_pair(camera_ul, camera_lr), true);
 }
