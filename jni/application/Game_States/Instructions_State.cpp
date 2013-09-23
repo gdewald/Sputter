@@ -1,5 +1,7 @@
 #include "Instructions_State.h"
 
+using namespace Zeni;
+
 void Instructions_State::on_key(const SDL_KeyboardEvent &event)
  {
 		if (event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED)

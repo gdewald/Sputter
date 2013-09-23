@@ -3,9 +3,6 @@
 #include <zenilib.h>
 #include "Game_Objects\Ball.h"
 
-using namespace Zeni;
-using namespace std;
-
 class Game_Model {
 private:
 	static Game_Model* model;

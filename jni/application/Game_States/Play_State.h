@@ -1,20 +1,19 @@
 #pragma once
 #include <zenilib.h>
 #include "../Controller.h"
+#include "../Game_Map/Level.h"
 
-using namespace std;
-using namespace Zeni;
-
-class Play_State : public Gamestate_II {
+class Play_State : public Zeni::Gamestate_II {
 private:
 	Ball* ball;
 	Controller* controller;
-	Chronometer<Time> m_chrono;
+	Level* level;
+	Zeni::Chronometer<Zeni::Time> m_chrono;
 	float m_time_passed;
 
 public:
 	Play_State();
-	void on_event(const Zeni_Input_ID&, const float& confidence, const int& action);
+	void on_event(const Zeni::Zeni_Input_ID&, const float& confidence, const int& action);
 	void on_push();
 	void on_pop();
 	void on_cover();

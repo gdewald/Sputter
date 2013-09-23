@@ -10,6 +10,7 @@ Play_State::Play_State() : m_time_passed(0.0f) {
 	// Inititalize the private members
 	ball = new Ball(Point2f(45.0f, 45.0f));
 	controller = new Controller(ball);
+	level = new Level();
 
 	// Map the joystick buttons
 	set_action(Zeni_Input_ID(SDL_KEYDOWN, SDLK_ESCAPE), 1);
@@ -92,9 +93,11 @@ void Play_State::perform_logic() {
 void Play_State::render() {
 	Video& vr = get_Video();
 	Colors& cr = get_Colors();
+	level->render(Point2f(), get_Window().get_width(), get_Window().get_height());
 
 	ball->render();
 	if (ball->is_stopped())
 		controller->render();
-	//vr.set_2d(make_pair(Point2f(30.0f, 30.0f), Point2f(640.0f, 480.0f)), true);
+
+	//vr.set_2d(make_pair(ball->get_position(), Point2f(640.0f, 480.0f)), true);
 }

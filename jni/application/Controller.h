@@ -2,9 +2,6 @@
 #include <zenilib.h>
 #include "Game_Objects\Ball.h"
 
-using namespace Zeni;
-using namespace std;
-
 class Controller {
 private:
 	//Ball under control
