@@ -95,23 +95,25 @@ void Play_State::perform_logic() {
 void Play_State::render() {
 	Video& vr = get_Video();
 	Colors& cr = get_Colors();
+	//Background
 	vr.set_clear_Color(cr["blue"]);
-	level->render(ball->get_position(), get_Window().get_width(), get_Window().get_height());
+
+	Point2f camera_pos = ball->get_position();
+	Window& window = get_Window();
+
+	//Camera stops following ball on edges
+	if (camera_pos.x < (window.get_width() / 2)) camera_pos.x = window.get_width() / 2;
+	else if (camera_pos.x > level->get_width_px() - (window.get_width() / 2)) camera_pos.x = level->get_width_px() - (window.get_width() / 2);
+	if (camera_pos.y < (window.get_height() / 2)) camera_pos.y = window.get_height() / 2;
+	else if (camera_pos.y > level->get_height_px() - (window.get_height() / 2)) camera_pos.y = level->get_height_px() - (window.get_height() / 2);
+
+	level->render(camera_pos, get_Window().get_width(), get_Window().get_height());
 
 	ball->render();
 	if (ball->is_stopped())
 		controller->render();
 
 	//wall->render();
-
-	Window& window = get_Window();
-	Point2f camera_pos = ball->get_position();
-
-	//Camera stops following ball on edges
-	if (camera_pos.x < (window.get_width()/2)) camera_pos.x = window.get_width() / 2;
-	else if (camera_pos.x > level->get_width_px() - (window.get_width() / 2)) camera_pos.x = level->get_width_px() - (window.get_width() / 2);
-	if (camera_pos.y < (window.get_height()/2)) camera_pos.y = window.get_height() / 2;
-	else if (camera_pos.y > level->get_height_px() - (window.get_height() / 2)) camera_pos.y = level->get_height_px() - (window.get_height() / 2);
 
 	Point2f camera_ul = Point2f(camera_pos.x - (window.get_width() / 2), camera_pos.y - (window.get_height() / 2));
 	Point2f camera_lr = Point2f(camera_pos.x + (window.get_width() / 2), camera_pos.y + (window.get_height() / 2));

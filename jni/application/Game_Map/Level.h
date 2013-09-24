@@ -31,9 +31,11 @@ public:
 
 class Level {
 private:
-	std::map<Level_position, Tile> map;
+	Tile** map;
 	int map_width;
 	int map_height;
+
+	static const float tile_dim;
 
 public:
 	//Default level

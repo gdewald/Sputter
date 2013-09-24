@@ -4,6 +4,9 @@ using namespace std;
 using namespace Zeni;
 
 void Tile::render(Point2f ul, Point2f lr) {
+	if (id == NONE)
+		return;
+
 	Video& vr = get_Video();
 
 	Vertex2f_Texture v1 = Vertex2f_Texture(ul, Point2f());
