@@ -33,6 +33,9 @@ void Ball::rotate(float theta_) {
 }
 
 void Ball::render() {
-	Video& vr = get_Video();
+	//Video& vr = get_Video();
+	//Colors& cr = get_Colors();
+	//get_Fonts()["system_36_800x600"].render_text(ftoa(theta, 5) + " ball_theta", Vector3f(position.x - 100.0f, position.y - 100.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
+
 	render_image("ball_1", Point2f(position.x - 32.0f, position.y - 32.0f), Point2f(position.x + 32.0f, position.y + 32.0f), -theta, 1.0f, position, false, Color());
 }

@@ -26,9 +26,9 @@ void Controller::render() {
 
 	Video& vr = get_Video();
 	Colors& cr = get_Colors();
-	get_Fonts()["system_36_800x600"].render_text("(" + ftoa(x, 3) + ", " + ftoa(y, 3) + ")", Vector3f(50.0f, 50.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
-	get_Fonts()["system_36_800x600"].render_text(ftoa(theta, 3) + " radians", Vector3f(50.0f, 70.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
-	get_Fonts()["system_36_800x600"].render_text(ftoa(temp, 3) + " delta_theta", Vector3f(50.0f, 90.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
+	//get_Fonts()["system_36_800x600"].render_text("(" + ftoa(x, 3) + ", " + ftoa(y, 3) + ")", Vector3f(50.0f, 50.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
+	//get_Fonts()["system_36_800x600"].render_text(ftoa(theta, 3) + " radians", Vector3f(50.0f, 70.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
+	//get_Fonts()["system_36_800x600"].render_text(ftoa(temp, 3) + " delta_theta", Vector3f(50.0f, 90.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
 
 	Point2f center = ball->get_position();
 	Vertex2f_Color start(Point2f(center.x, center.y), cr["yellow"]);
