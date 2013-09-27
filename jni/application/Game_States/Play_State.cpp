@@ -16,12 +16,12 @@ Play_State::Play_State() : m_time_passed(0.0f) {
 
 	// Map the joystick buttons
 	set_action(Zeni_Input_ID(SDL_KEYDOWN, SDLK_ESCAPE), 1);
-	set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, 7), 1);
+	set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, 4), 1);
 	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_X /* x-axis */), 2);
 	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_Y /* y-axis */), 3);
 	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_THUMB_X), 4);
 	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_TRIGGER), 5);
-	set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, 1), 6);
+	set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, 10), 6);
 }
 
 void Play_State::on_push() {
@@ -83,20 +83,32 @@ void Play_State::on_event(const Zeni_Input_ID &, const float &confidence, const 
 }
 
 void Play_State::perform_logic() {
+	SDL_Delay(5);
+
 	const float time_passed = m_chrono.seconds();
 	const float time_step = time_passed - m_time_passed;
 	m_time_passed = time_passed;
 
-	SDL_Delay(5);
-	if (!ball->is_stopped())
+	//Only let the ball be controlled when it is stopped
+	if (ball->is_stopped())
+		controller->process_inputs();
+	else //Let the ball move
 		ball->update(time_step);
+
+	//~Fake goal logic~
+	Point2f ball_pos = ball->get_position();
+	Point2f goal_pos_ul(64.0f * 20, 64.0f * 20);
+	Point2f goal_pos_lr(64.0f * 21, 64.0f * 21);
+	if (ball_pos.x > goal_pos_ul.x   && ball_pos.x < goal_pos_lr.x && ball_pos.y > goal_pos_ul.y && ball_pos.y < goal_pos_lr.y)
+		get_Game().pop_state();
+	//~Fake goal logic~
 }
 
 void Play_State::render() {
 	Video& vr = get_Video();
 	Colors& cr = get_Colors();
 	//Background
-	vr.set_clear_Color(cr["blue"]);
+	vr.set_clear_Color(cr["green"]);
 
 	Point2f camera_pos = ball->get_position();
 	Window& window = get_Window();

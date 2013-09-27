@@ -5,7 +5,6 @@
 using namespace Zeni;
 using namespace std;
 
-const float Level_position::tile_dim = 64.0f;
 const float Level::tile_dim = 64.0f;
 
 Level::Level() {
@@ -17,7 +16,7 @@ Level::Level() {
 			map[i][j] = GRASS_1;
 		}
 	}
-	map[4][4] = HOLE_1;
+	map[20][20] = HOLE_1;
 	map_width = dim;
 	map_height = dim;
 }

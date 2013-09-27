@@ -8,7 +8,6 @@ private:
 	Ball* ball;
 	// Raw inputs
 	float x, y, ltr, rtr;
-	void process_inputs();
 	// Processed inputs
 	float spread, range_mult, range_base, theta;
 
@@ -23,6 +22,7 @@ public:
 	void set_rtr(float rtr_) { rtr = rtr_; }
 	void fire();
 
+	void process_inputs();
 
 	void render();
 };
