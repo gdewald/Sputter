@@ -118,6 +118,9 @@ void Play_State::render() {
 	else if (camera_pos.x > level->get_width_px() - (window.get_width() / 2)) camera_pos.x = level->get_width_px() - (window.get_width() / 2);
 	if (camera_pos.y < (window.get_height() / 2)) camera_pos.y = window.get_height() / 2;
 	else if (camera_pos.y > level->get_height_px() - (window.get_height() / 2)) camera_pos.y = level->get_height_px() - (window.get_height() / 2);
+	Point2f camera_ul = Point2f(camera_pos.x - (window.get_width() / 2), camera_pos.y - (window.get_height() / 2));
+	Point2f camera_lr = Point2f(camera_pos.x + (window.get_width() / 2), camera_pos.y + (window.get_height() / 2));
+	vr.set_2d(make_pair(camera_ul, camera_lr), true);
 
 	level->render(camera_pos, get_Window().get_width(), get_Window().get_height());
 
@@ -127,7 +130,4 @@ void Play_State::render() {
 
 	//wall->render();
 
-	Point2f camera_ul = Point2f(camera_pos.x - (window.get_width() / 2), camera_pos.y - (window.get_height() / 2));
-	Point2f camera_lr = Point2f(camera_pos.x + (window.get_width() / 2), camera_pos.y + (window.get_height() / 2));
-	vr.set_2d(make_pair(camera_ul, camera_lr), true);
 }

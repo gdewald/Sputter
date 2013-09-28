@@ -29,7 +29,7 @@ class Bootstrap {
       get_Sounds();
       get_Game().joy_mouse.enabled = true;
 
-      return new Title_State<Play_State, Instructions_State>("Putt-putt\nHell");
+      return new Title_State<Play_State, Instructions_State>("Placeholder");
 	  //return new Title_State<Test_State, Instructions_State>("Placeholder");
 	  //return new Title_State<Tutorial_State, Instructions_State>("Putt-putt\nHell");
 	}
