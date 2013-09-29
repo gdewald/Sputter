@@ -16,10 +16,10 @@ private:
 
 	//Collision_circle* col_obj
 
-	const float max_speed = 500.0f;
+	const float max_speed;
 	Ball();
 public:
-	Ball(Zeni::Point2f position_) : /*Collision_circle(position_, 64.0f),*/ position(position_), theta(0.0f), v(0.0f), a_friction(200.0f), state(STOPPED) { }
+	Ball(Zeni::Point2f position_) : /*Collision_circle(position_, 64.0f),*/ position(position_), theta(0.0f), v(0.0f), a_friction(200.0f), state(STOPPED), max_speed(50.0f) { }
 
 	bool is_stopped() { return state == STOPPED; }
 	Zeni::Point2f get_position() { return position; }
