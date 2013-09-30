@@ -23,6 +23,8 @@ public:
 
 	bool is_stopped() { return state == STOPPED; }
 	Zeni::Point2f get_position() { return position; }
+
+	void set_friction(float val) { a_friction = val; }
 	
 	void update(const float time_step);
 	void hit(float theta_, float power);

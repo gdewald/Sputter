@@ -17,6 +17,9 @@ Level::Level() {
 		}
 	}
 	map[20][20] = HOLE_1;
+	for (int i = 10; i < 20; i++) {
+		map[i][5] = SAND;
+	}
 	map_width = dim;
 	map_height = dim;
 }
@@ -38,5 +41,13 @@ void Level::render(Zeni::Point2f pos, float screen_width, float screen_height) {
 			map[i][j].render(Point2f(i*tile_dim, j*tile_dim), 
 				             Point2f((i + 1)*tile_dim, (j + 1)*tile_dim));
 		}
+	}
+}
+
+void Level::check_terrain(Ball* b) {
+	auto cur_pos = b->get_position();
+	if (int(cur_pos.x / tile_dim) != int(last_pos.x / tile_dim) || int(cur_pos.y / tile_dim) != int(last_pos.y / tile_dim)) {
+		b->set_friction(get_tile(cur_pos)->get_friction());
+		last_pos = cur_pos;
 	}
 }

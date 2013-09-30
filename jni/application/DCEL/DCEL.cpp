@@ -14,8 +14,8 @@
 //	}
 //};
 //struct cmp_x {
-//	bool operator() (const site_event& e1, const site_event& e2) {
-//		return (e1.pos.x < e2.pos.x);
+//	bool operator() (const Point2f& p1, const Point2f& p2) {
+//		return (p1.x < p2.x);
 //	}
 //};
 //
@@ -24,8 +24,8 @@
 //	DCEL_half_edge* e;
 //};
 //
-//void handle_site_event(site_event& e, priority_queue<site_event, vector<site_event>, cmp_y>& event_queue, map<site_event, status_leaf, cmp_x>& status_struct);
-//void handle_circle_event(site_event& e, priority_queue<site_event, vector<site_event>, cmp_y>& event_queue, map<site_event, status_leaf, cmp_x>& status_struct);
+//void handle_site_event(site_event& e, priority_queue<site_event, vector<site_event>, cmp_y>& event_queue, map<Point2f, status_leaf, cmp_x>& status_map);
+//void handle_circle_event(site_event& e, priority_queue<site_event, vector<site_event>, cmp_y>& event_queue, map<Point2f, status_leaf, cmp_x>& status_map);
 //
 //void Voronoi_Diagram(set<Point2f> points) {
 //	priority_queue<site_event, vector<site_event>, cmp_y> event_queue;
@@ -49,16 +49,20 @@
 //	}
 //}
 //
-//void handle_site_event(site_event& e, priority_queue<site_event, vector<site_event>, cmp_y>& event_queue, map<site_event, status_leaf, cmp_x>& status_struct) {
+//void handle_site_event(site_event& e, priority_queue<site_event, vector<site_event>, cmp_y>& event_queue, map<site_event, status_leaf, cmp_x>& status_map) {
 //	if(status_map.empty()) {
 //		status_leaf l;
-//		l.circle_even = nullptr;
+//		l.circle_event = nullptr;
 //		l.e = nullptr;
 //		status_map[e.pos] = l;
 //		return;
 //	}
 //
+//	auto i = status_map.upper_bound(e);
+//
 //
 //}
 //
-////void handle_circle_event(site_event& e, priority_queue<site_event, vector<site_event>, cmp_y>& event_queue, map<site_event, status_leaf, cmp_x>& status_struct);
+//void handle_circle_event(site_event& e, priority_queue<site_event, vector<site_event>, cmp_y>& event_queue, map<Point2f, status_leaf, cmp_x>& status_map) {
+//
+//}

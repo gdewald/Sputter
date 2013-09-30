@@ -74,6 +74,7 @@ void Play_State::on_event(const Zeni_Input_ID &, const float &confidence, const 
 		break;
 
 	case 6:
+		get_Game().pop_state();
 		controller->fire();
 		break;
 
