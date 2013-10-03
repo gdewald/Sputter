@@ -18,7 +18,7 @@ public:
 	virtual bool is_colliding(Ball* b) {
 		return (Zeni::Vector2f(b->get_position() - pos).magnitude() <= (b->get_radius() + radius));
 	}
-	virtual void perform_collision(Ball* b);
+	virtual void perform_collision(Ball* b) = 0;
 
 	virtual void render();
 };
@@ -28,9 +28,9 @@ private:
 
 public:
 
-
 	Hole_event(Zeni::Point2f pos_) : Ball_event(pos_, "hole_1") { }
+
 	virtual void perform_collision(Ball* b) {
-		get_Game().pop_state();
+		Zeni::get_Game().pop_state();
 	}
 };

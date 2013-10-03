@@ -2,18 +2,24 @@
 
 #include <zenilib.h>
 #include <map>
+#include <set>
 #include <utility>
 #include <cassert>
 #include "Tile.h"
 #include "../Game_Objects/Ball.h"
+#include "../Game_Objects/Ball_event.h"
 
 class Level {
 private:
+	//Tile structure
 	Terrain_tile** map;
 	int map_width;
 	int map_height;
 
 	std::map<int, std::map<int, Wall_tile>> wall_map;
+
+	//Objects outside the tile structure
+	std::map <int, std::map<int, std::vector<Ball_event*>>> event_map;
 
 	Zeni::Point2f last_pos;
 
@@ -48,6 +54,7 @@ public:
 	//Collision stuff
 	Zeni::Collision::Parallelepiped get_col_box(int x, int y);
 	float check_tile_collisions(Ball* b, float dist = 0.0f);
+	void check_event_collisions(Ball* b);
 	float get_theta_wall(Zeni::Collision::Sphere col_sphere_new, Zeni::Collision::Sphere col_sphere_old, Zeni::Collision::Parallelepiped col_square);
 		
 	void check_terrain(Ball* b);

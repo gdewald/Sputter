@@ -94,6 +94,7 @@ void Play_State::perform_logic() {
 		controller->process_inputs();
 	else {//Let the ball move
 		ball->update(time_step);
+		level->check_event_collisions(ball);
 		level->check_tile_collisions(ball);
 		level->check_terrain(ball);
 	}

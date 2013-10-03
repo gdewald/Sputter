@@ -36,14 +36,11 @@ void Ball::rotate(float theta_) {
 	theta = theta_;
 }
 
-String potato = "potato";
-String apple = "apple";
-
 void Ball::render() {
 	Video& vr = get_Video();
 	Colors& cr = get_Colors();
-	get_Fonts()["system_36_800x600"].render_text(apple, Vector3f(50.0f, 110.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
-	get_Fonts()["system_36_800x600"].render_text(potato, Vector3f(50.0f, 130.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
+	//get_Fonts()["system_36_800x600"].render_text(apple, Vector3f(50.0f, 110.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
+	//get_Fonts()["system_36_800x600"].render_text(potato, Vector3f(50.0f, 130.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
 
 	render_image("ball_1", Point2f(position.x - 32.0f, position.y - 32.0f), Point2f(position.x + 32.0f, position.y + 32.0f), -theta, 1.0f, position, false, Color());
 }
@@ -51,7 +48,6 @@ void Ball::render() {
 float Ball::move_from_col(Collision::Sphere col_sphere, Collision::Parallelepiped col_square) {
 	float dist = 0.0f;
 	Collision::Sphere s = get_col_sphere();
-	apple = ftoa(s.get_center().x) + " " + ftoa(s.get_center().y);
 
 	if(s.intersects(col_square)) {
 		float step = 0.0001 * v;

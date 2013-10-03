@@ -5,6 +5,8 @@ using namespace std;
 
 void Ball_event::render() {
 	Video& vr = get_Video();
+	Point2f ul(pos.x - 32.0f, pos.y - 32.0f);
+	Point2f lr(pos.x + 32.0f, pos.y + 32.0f);
 	Vertex2f_Texture v1 = Vertex2f_Texture(ul, Point2f());
 	Vertex2f_Texture v2 = Vertex2f_Texture(Point2f(lr.x, ul.y), Point2f(1.0f, 0.0f));
 	Vertex2f_Texture v3 = Vertex2f_Texture(lr, Point2f(1.0f, 1.0f));
