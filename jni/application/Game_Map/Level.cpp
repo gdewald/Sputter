@@ -24,17 +24,20 @@ Level::Level() {
 		}
 	}
 
-	for (int i = 5; i < 10; i++) {
-		wall_map[5][i] = METAL;
-		map[5][i] = ICE;
-		wall_map[8][i] = METAL;
-		map[8][i] = ICE;
+	for (int i = 1; i < 5; i++) {
+		wall_map[0][i] = METAL;
+		map[0][i] = ICE;
+		wall_map[3][i] = METAL;
+		map[3][i] = ICE;
 	}
-	wall_map[6][10] = METAL;
-	map[6][10] = ICE;
-	wall_map[7][10] = METAL;
-	map[7][10] = ICE;
-
+	wall_map[1][0] = METAL;
+	map[1][0] = ICE;
+	wall_map[2][0] = METAL;
+	map[2][0] = ICE;
+	wall_map[1][5] = METAL;
+	map[1][5] = ICE;
+	wall_map[2][5] = METAL;
+	map[2][5] = ICE;
 
 	map_width = dim;
 	map_height = dim;
@@ -120,17 +123,19 @@ float Level::get_theta_wall(Collision::Sphere col_sphere_new, Collision::Sphere 
 	float sphere_rad = col_sphere_new.get_radius();
 	Point2f square_pos(col_square.get_center());
 	float theta = Vector2f(square_pos - sphere_pos).theta();
+	if (theta < 0)
+		theta = -(theta + 3.14) + 6.28;
 
-	if (theta >((-3.14f * 3) / 4) && theta < -3.14f / 4) { //Left
+	if (theta >((3.14f * 7) / 4) && theta < (3.14f * 5) / 4) { //Left
 		return (3.14f * 3) / 2;
 	}
 	if (theta < ((3.14f * 3) / 4) && theta > 3.14f / 4) { //Right
 		return 3.14f / 2;
 	}
-	if (theta < ((-3.14f * 3) / 4) || theta > ((3.14f * 3) / 4)) { //Top
+	if (theta < ((3.14f * 5) / 4) && theta > ((3.14f * 3) / 4)) { //Top
 		return 0.0f;
 	}
-	if (theta < 3.14f / 4 || theta > -3.14f / 4) { //Bottom
+	if (theta >= 0.0f && theta < 3.14f / 4 || theta <= 6.28f && theta > ((3.14f * 7) / 4)) { //Bottom
 		return 3.14f;
 	}
 }

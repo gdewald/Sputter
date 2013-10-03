@@ -8,7 +8,7 @@ Play_State::Play_State() : m_time_passed(0.0f) {
 	set_pausable(true);
 
 	// Inititalize the private members
-	ball = new Ball(Point2f(45.0f, 45.0f));
+	ball = new Ball(Point2f(129.0f, 129.0f));
 	controller = new Controller(ball);
 	level = new Level();
 
@@ -93,8 +93,8 @@ void Play_State::perform_logic() {
 	if (ball->is_stopped())
 		controller->process_inputs();
 	else {//Let the ball move
-		level->check_tile_collisions(ball);
 		ball->update(time_step);
+		level->check_tile_collisions(ball);
 		level->check_terrain(ball);
 	}
 }

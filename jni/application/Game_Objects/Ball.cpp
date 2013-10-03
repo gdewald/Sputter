@@ -54,7 +54,7 @@ float Ball::move_from_col(Collision::Sphere col_sphere, Collision::Parallelepipe
 	apple = ftoa(s.get_center().x) + " " + ftoa(s.get_center().y);
 
 	if(s.intersects(col_square)) {
-		float step = 0.001 * v;
+		float step = 0.0001 * v;
 		dist += step;
 		position.x -= sin(theta) * step;
 		position.y += cos(theta) * step;
