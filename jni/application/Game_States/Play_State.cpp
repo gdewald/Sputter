@@ -74,7 +74,6 @@ void Play_State::on_event(const Zeni_Input_ID &, const float &confidence, const 
 		break;
 
 	case 6:
-		get_Game().pop_state();
 		controller->fire();
 		break;
 
@@ -93,16 +92,11 @@ void Play_State::perform_logic() {
 	//Only let the ball be controlled when it is stopped
 	if (ball->is_stopped())
 		controller->process_inputs();
-	else //Let the ball move
+	else {//Let the ball move
+		level->check_tile_collisions(ball);
 		ball->update(time_step);
-
-	//~Fake goal logic~
-	Point2f ball_pos = ball->get_position();
-	Point2f goal_pos_ul(64.0f * 20, 64.0f * 20);
-	Point2f goal_pos_lr(64.0f * 21, 64.0f * 21);
-	if (ball_pos.x > goal_pos_ul.x   && ball_pos.x < goal_pos_lr.x && ball_pos.y > goal_pos_ul.y && ball_pos.y < goal_pos_lr.y)
-		get_Game().pop_state();
-	//~Fake goal logic~
+		level->check_terrain(ball);
+	}
 }
 
 void Play_State::render() {

@@ -3,7 +3,7 @@
 using namespace std;
 using namespace Zeni;
 
-void Tile::render(Point2f ul, Point2f lr) {
+void Terrain_tile::render(Point2f ul, Point2f lr) {
 	if (id == NONE)
 		return;
 

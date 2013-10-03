@@ -9,9 +9,11 @@
 
 class Level {
 private:
-	Tile** map;
+	Terrain_tile** map;
 	int map_width;
 	int map_height;
+
+	std::map<int, std::map<int, Wall_tile>> wall_map;
 
 	Zeni::Point2f last_pos;
 
@@ -34,10 +36,19 @@ public:
 		return map_height * tile_dim;
 	}
 
-	Tile* get_tile(Zeni::Point2f pos) {
+	Terrain_tile* get_tile(Zeni::Point2f pos) {
 		assert(pos.x >= 0 && pos.y >= 0);
-		return &map[int(pos.x / tile_dim)][int(pos.y / tile_dim)];
+		return &map[get_coordinate(pos.x)][get_coordinate(pos.y)];
 	}
 
+	int get_coordinate(float pos) {
+		return pos / tile_dim;
+	}
+
+	//Collision stuff
+	Zeni::Collision::Parallelepiped get_col_box(int x, int y);
+	float check_tile_collisions(Ball* b, float dist = 0.0f);
+	float get_theta_wall(Zeni::Collision::Sphere col_sphere_new, Zeni::Collision::Sphere col_sphere_old, Zeni::Collision::Parallelepiped col_square);
+		
 	void check_terrain(Ball* b);
 };

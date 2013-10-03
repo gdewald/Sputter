@@ -17,7 +17,8 @@ void Controller::fire() {
 	float delta_theta = ((rand() % int((spread/3.14f)* 90.0f))*3.14)/180.0f - spread;
 	temp = delta_theta;
 	float final_theta = theta + delta_theta;
-	ball->hit(final_theta, range_mult*range_base/105.0f);
+	if (ball->is_stopped())
+		ball->hit(final_theta, range_mult*range_base/105.0f);
 }
 
 void Controller::render() {

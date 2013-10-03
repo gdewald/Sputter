@@ -49,6 +49,14 @@ The following things are unsupported:
     <filepath>textures/terrain/hole_1.png</filepath>
 	<tile>1</tile>
   </hole_1>
+  <ice_1>
+    <filepath>textures/terrain/ice_1.png</filepath>
+	<tile>1</tile>
+  </ice_1>
+  <sand_1>
+    <filepath>textures/terrain/sand_1.png</filepath>
+	<tile>1</tile>
+  </sand_1>
   <logo>
     <filepath>textures/logo.png</filepath>
 	<tile>0</tile>
