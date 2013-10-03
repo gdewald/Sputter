@@ -61,6 +61,18 @@ void Level::render(Zeni::Point2f pos, float screen_width, float screen_height) {
 				             Point2f((i + 1)*tile_dim, (j + 1)*tile_dim));
 		}
 	}
+
+	for (int i = ul_x; i < lr_x; i++) {
+		auto& inner = wall_map[i];
+		auto ul_it = inner.upper_bound(ul_y - 1);
+		auto lr_it = inner.lower_bound(lr_y + 1);
+		if (ul_it != inner.end()) {
+			for (auto j = ul_it; j != lr_it; j++) {
+				inner[j->first].render(Point2f(i * tile_dim, j->first * tile_dim),
+					                   Point2f((i + 1) * tile_dim, (j->first + 1)*tile_dim));
+			}
+		}
+	}
 }
 
 Collision::Parallelepiped Level::get_col_box(int x, int y) {
