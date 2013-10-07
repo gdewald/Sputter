@@ -24,6 +24,7 @@ public:
 	bool is_stopped() { return state == STOPPED; }
 	Zeni::Point2f get_position() { return position; }
 	float get_radius() { return 32.0f; }
+	float get_speed() { return v; }
 
 	void set_friction(float val) { a_friction = val; }
 

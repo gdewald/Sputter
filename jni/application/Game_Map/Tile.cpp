@@ -5,7 +5,8 @@ using namespace Zeni;
 
 std::map<TERRAIN_ID, Zeni::String> TILE_STR_T{ std::make_pair(GRASS_1, "grass_1"), std::make_pair(SAND, "sand_1"),
 std::make_pair(ICE, "ice_1"), std::make_pair(NOTERRAIN, "") };
-std::map<WALL_ID, Zeni::String> TILE_STR_W{ std::make_pair(METAL, "sheetmetal"), std::make_pair(WOOD, "wood_1"), std::make_pair(NOWALL, "") };
+std::map<WALL_ID, Zeni::String> TILE_STR_W{ std::make_pair(METAL, "sheetmetal"), std::make_pair(WOOD_1, "wood_1"), 
+std::make_pair(WOOD_2, "wood_2"), std::make_pair(NOWALL, "") };
 
 void Tile::render(Point2f ul, Point2f lr, String tile_str) {
 	Video& vr = get_Video();
@@ -28,4 +29,23 @@ void Terrain_tile::render(Zeni::Point2f ul, Zeni::Point2f lr) {
 
 void Wall_tile::render(Zeni::Point2f ul, Zeni::Point2f lr) {
 	Tile::render(ul, lr, TILE_STR_W[id]);
+}
+
+bool Wall_tile::on_collision(Ball* b) {
+	switch (id) {
+	case METAL:
+		//Tink sound
+		break;
+	case WOOD_1:
+		if (b->get_speed() < 150.0f)
+			break;
+		//Crunch sound
+		id = WOOD_2;
+		break;
+	case WOOD_2:
+		//Break sound
+		return false;
+		break;
+	}
+	return true;
 }

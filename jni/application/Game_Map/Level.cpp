@@ -36,8 +36,8 @@ Level::Level(String lvl_name) {
 		}
 	}
 
-	map_width = dim_y;
-	map_height = dim_x;
+	map_width = dim_x;
+	map_height = dim_y;
 }
 
 Level::Level() {
@@ -46,6 +46,7 @@ Level::Level() {
 	for (int i = 0; i < dim; i++) {
 		map[i] = new Terrain_tile[dim]();
 		for (int j = 0; j < dim; j++) {
+
 			map[i][j] = GRASS_1;
 		}
 	}
@@ -148,6 +149,7 @@ float Level::check_tile_collisions(Ball* b, float dist) {
 
 	//This should only be relevant if dist is non-zero
 	static Collision::Parallelepiped final_col_square;
+	static int tile_x, tile_y;
 
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 2; j++) {
@@ -158,6 +160,8 @@ float Level::check_tile_collisions(Ball* b, float dist) {
 					//Check if collision happens
 					if (col_sphere.intersects(col_square)) {
 						final_col_square = col_square;
+						tile_x = x_coor + i; tile_y = y_coor + j;
+						
 						//Move ball out of the collision
 						dist += b->move_from_col(col_sphere, col_square);
 						
@@ -170,6 +174,8 @@ float Level::check_tile_collisions(Ball* b, float dist) {
 	
 	// Reflect ball if distance is non-zero
 	if (dist > 0.0f) {
+		if (!wall_map[tile_x][tile_y].on_collision(b))
+			wall_map[tile_x].erase(tile_y);
 		float theta_wall = get_theta_wall(b->get_col_sphere(), col_sphere, final_col_square);
 		b->reflect(theta_wall, dist);
 	}

@@ -8,10 +8,6 @@ void Ball::update(const float time_step) {
 	if (state == MOVING) {
 		//Bounce off edges
 		float alpha;
-		if (position.x > 30 * 64.0f - 32.0f) theta = -theta;
-		else if (position.x < 32.0f) theta = -theta;
-		else if (position.y > 30 * 64.0f - 32.0f) theta = -theta + 3.14f;
-		else if (position.y < 32.0f) theta = -theta + 3.14f;
 		
 		position.x += sin(theta) * v * time_step;
 		position.y -= cos(theta) * v * time_step;
@@ -65,4 +61,6 @@ void Ball::reflect(float theta_wall, float dist) {
 
 	position.x += sin(theta) * dist;
 	position.y -= cos(theta) * dist;
+
+	v *= .8f;
 }
