@@ -11,7 +11,7 @@ private:
 	//Vector2f a_dir;
 	//float a;
 	float a_friction;
-	enum BALL_STATE { MOVING, STOPPED, COLLIDING, NONE };
+	enum BALL_STATE { MOVING, STOPPED, NONE };
 	BALL_STATE state;
 
 	Zeni::Collision::Sphere col_sphere;

@@ -3,7 +3,7 @@
 using namespace std;
 using namespace Zeni;
 
-std::map<TERRAIN_ID, Zeni::String> TILE_STR_T{ std::make_pair(GRASS_1, "grass_1"), std::make_pair(HOLE_1, "hole_1"), std::make_pair(SAND, "sand_1"),
+std::map<TERRAIN_ID, Zeni::String> TILE_STR_T{ std::make_pair(GRASS_1, "grass_1"), std::make_pair(SAND, "sand_1"),
 std::make_pair(ICE, "ice_1"), std::make_pair(NOTERRAIN, "") };
 std::map<WALL_ID, Zeni::String> TILE_STR_W{ std::make_pair(METAL, "sheetmetal"), std::make_pair(WOOD, "wood_1"), std::make_pair(NOWALL, "") };
 

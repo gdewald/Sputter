@@ -5,10 +5,10 @@
 #include <map>
 #include <utility>
 
-enum TERRAIN_ID { GRASS_1, HOLE_1, SAND, ICE, NOTERRAIN };
+enum TERRAIN_ID { GRASS_1, SAND, ICE, NOTERRAIN };
 enum WALL_ID { METAL, WOOD, NOWALL };
 enum TILE_TYPE { START, FINISH, NOTYPE };
-const std::vector<float> TILE_FRICT = { 200.0f, 200.0f, 400.0f, 100.0f };
+const std::vector<float> TILE_FRICT = { 200.0f, 400.0f, 100.0f };
 
 //class Tile_factory {
 //private:

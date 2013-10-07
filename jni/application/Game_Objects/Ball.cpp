@@ -21,9 +21,6 @@ void Ball::update(const float time_step) {
 			v = 0;
 		}
 	}
-	else if (state == COLLIDING) {
-
-	}
 }
 
 void Ball::hit(float theta_, float power) {

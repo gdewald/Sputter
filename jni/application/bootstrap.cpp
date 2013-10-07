@@ -8,6 +8,7 @@
 #include "Game_States/Play_State.h"
 #include "Game_States/Instructions_State.h"
 #include "Game_States/Test_State.h"
+#include "Game_States/Level_Select_State.h"
 
 #if defined(_DEBUG) && defined(_WINDOWS)
 #define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
@@ -29,7 +30,7 @@ class Bootstrap {
       get_Sounds();
       get_Game().joy_mouse.enabled = true;
 
-      return new Title_State<Play_State, Instructions_State>("Placeholder");
+      return new Title_State<Level_Select_State, Instructions_State>("Placeholder");
 	  //return new Title_State<Test_State, Instructions_State>("Placeholder");
 	  //return new Title_State<Tutorial_State, Instructions_State>("Putt-putt\nHell");
 	}

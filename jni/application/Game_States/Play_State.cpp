@@ -4,7 +4,24 @@
 using namespace Zeni;
 using namespace std;
 
-Play_State::Play_State(String level_name) : Play_State() {
+Play_State::Play_State(String level_name) : m_time_passed(0.0f) {
+	set_pausable(true);
+
+	// Inititalize the private members
+	ball = new Ball(Point2f(129.0f, 129.0f));
+	controller = new Controller(ball);
+	level = new Level(level_name);
+
+	wall = new Wall(Point2f(100.0f, 100.0f), "hole_1", 20.0f, 40.0f, 1.15f);
+
+	// Map the joystick buttons
+	set_action(Zeni_Input_ID(SDL_KEYDOWN, SDLK_ESCAPE), 1);
+	set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, 4), 1);
+	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_X /* x-axis */), 2);
+	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_Y /* y-axis */), 3);
+	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_THUMB_X), 4);
+	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_TRIGGER), 5);
+	set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, 10), 6);
 
 }
 

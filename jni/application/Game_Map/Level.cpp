@@ -1,11 +1,44 @@
 #include "Level.h"
 #include "Tile.h"
 #include <cassert>
+#include <fstream>
 
 using namespace Zeni;
 using namespace std;
 
 const float Level::tile_dim = 64.0f;
+
+Level::Level(String lvl_name) {
+	fstream lvl_in("levels\\" + string(lvl_name.c_str()), fstream::in);
+
+	int dim_x, dim_y;
+	lvl_in >> dim_x >> dim_y;
+
+	map = new Terrain_tile*[dim_x]();
+	for (int i = 0; i < dim_x; i++) {
+		map[i] = new Terrain_tile[dim_y]();
+		for (int j = 0; j < dim_y; j++) {
+			int terrain_type, wall_type;
+			lvl_in >> terrain_type >> wall_type;
+			map[i][j] = (TERRAIN_ID)terrain_type;
+			if (wall_type != -1)
+				wall_map[i][j] = (WALL_ID)wall_type;
+		}
+	}
+	
+	int event_type;
+	while (lvl_in >> event_type && lvl_in.good()) {
+		float event_x, event_y;
+		lvl_in >> event_x >> event_y;
+		switch (event_type) {
+		case 0: //Hole_event
+			event_map[int(event_x/tile_dim)][int(event_y/tile_dim)].push_back(new Hole_event(Point2f(event_x, event_y)));
+		}
+	}
+
+	map_width = dim_y;
+	map_height = dim_x;
+}
 
 Level::Level() {
 	int dim = 30;
@@ -16,7 +49,6 @@ Level::Level() {
 			map[i][j] = GRASS_1;
 		}
 	}
-	map[20][20] = HOLE_1;
 	for (int i = 10; i < 20; i++) {
 		for (int j = 3; j < 6; j++) {
 			map[i][j] = SAND;
