@@ -4,6 +4,10 @@
 using namespace Zeni;
 using namespace std;
 
+Play_State::Play_State(String level_name) : Play_State() {
+
+}
+
 Play_State::Play_State() : m_time_passed(0.0f) {
 	set_pausable(true);
 
