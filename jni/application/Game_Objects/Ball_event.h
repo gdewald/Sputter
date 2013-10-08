@@ -1,6 +1,7 @@
 #pragma once
 
 #include <zenilib.h>
+#include "../Game_States/Scoreboard_State.h"
 #include "Ball.h"
 
 class Ball_event {
@@ -32,5 +33,17 @@ public:
 
 	virtual void perform_collision(Ball* b) {
 		Zeni::get_Game().pop_state();
+		Zeni::get_Game().push_state(new Scoreboard_State());
 	}
 };
+
+//class Fireball_event :public Ball_event {
+//
+//};
+//
+//class Spikeball_event : public Ball_event {
+//
+//};
+//class Powerball_event : public Ball_event {
+//
+//};

@@ -15,9 +15,10 @@ private:
 public:
 	Accept_button() : Zeni::Text_Button(Zeni::Point2f(500.0f, 480.0f), Zeni::Point2f(700.0f, 530.0f), "system_36_800x600", "Accept") { }
 	void on_accept() {
-		for (int i = level_num; i < num_levels; i++) {
-			Zeni::get_Game().push_state(new Play_State(level_name[i]));
-		}
+		//for (int i = level_num; i < num_levels; i++) {
+
+			Zeni::get_Game().push_state(new Play_State(level_name[level_num]));
+		//}
 	}
 };
 
@@ -50,10 +51,18 @@ private:
 
 public:
 	Level_Select_State() : Zeni::Widget_Gamestate(std::make_pair(Zeni::Point2f(), Zeni::Point2f(800.0f, 600.0f))) {
+		level_num = 0;
 		m_widgets.lend_Widget(accept);
 		m_widgets.lend_Widget(fwd);
 		m_widgets.lend_Widget(back);
 	};
+
+	static void push_next_level() {
+		Zeni::get_Game().push_state(new Play_State(level_name[++level_num]));
+	}
+	static void push_current_level() {
+		Zeni::get_Game().push_state(new Play_State(level_name[level_num]));
+	}
 
 	void render() {
 		Zeni::Widget_Gamestate::render();

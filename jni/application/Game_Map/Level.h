@@ -22,6 +22,8 @@ private:
 	std::map <int, std::map<int, std::vector<Ball_event*>>> event_map;
 
 	Zeni::Point2f last_pos;
+	//Only used for arrow logic
+	Zeni::Point2f hole_pos;
 
 	static const float tile_dim;
 

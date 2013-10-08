@@ -41,6 +41,42 @@ The following things are unsupported:
     <filepath>textures/objects/ball_1.png</filepath>
     <tile>0</tile>
   </ball_1>
+  <ball_u1>
+    <filepath>textures/objects/ball_u1.png</filepath>
+    <tile>0</tile>
+  </ball_u1>
+   <ball_u2>
+    <filepath>textures/objects/ball_u2.png</filepath>
+    <tile>0</tile>
+  </ball_u2>
+  <ball_d1>
+    <filepath>textures/objects/ball_d1.png</filepath>
+    <tile>0</tile>
+  </ball_d1>
+  <ball_d2>
+    <filepath>textures/objects/ball_d2.png</filepath>
+    <tile>0</tile>
+  </ball_d2>
+  <ball_l1>
+    <filepath>textures/objects/ball_l1.png</filepath>
+    <tile>0</tile>
+  </ball_l1>
+  <ball_l2>
+    <filepath>textures/objects/ball_l2.png</filepath>
+    <tile>0</tile>
+  </ball_l2>
+  <ball_r1>
+    <filepath>textures/objects/ball_r1.png</filepath>
+    <tile>0</tile>
+  </ball_r1>
+  <ball_r2>
+    <filepath>textures/objects/ball_r2.png</filepath>
+    <tile>0</tile>
+  </ball_r2>
+  <ball_spikes>
+    <filepath>textures/objects/ball_spikes.png</filepath>
+    <tile>0</tile>
+  </ball_spikes>
   <grass_1>
     <filepath>textures/terrain/grass_1.png</filepath>
 	<tile>1</tile>

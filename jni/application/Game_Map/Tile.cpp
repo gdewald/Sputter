@@ -1,4 +1,5 @@
 #include "Tile.h"
+#include "../Points.h"
 
 using namespace std;
 using namespace Zeni;
@@ -39,10 +40,12 @@ bool Wall_tile::on_collision(Ball* b) {
 	case WOOD_1:
 		if (b->get_speed() < 150.0f)
 			break;
+		Points::get_Points().wall_damage();
 		//Crunch sound
 		id = WOOD_2;
 		break;
 	case WOOD_2:
+		Points::get_Points().wall_break();
 		//Break sound
 		return false;
 		break;

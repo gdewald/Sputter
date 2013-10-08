@@ -1,4 +1,5 @@
 #include "Play_State.h"
+#include "../Points.h"
 #include <list>
 
 using namespace Zeni;
@@ -124,8 +125,6 @@ void Play_State::perform_logic() {
 void Play_State::render() {
 	Video& vr = get_Video();
 	Colors& cr = get_Colors();
-	//Background
-	vr.set_clear_Color(cr["green"]);
 
 	Point2f camera_pos = ball->get_position();
 	Window& window = get_Window();
@@ -146,6 +145,8 @@ void Play_State::render() {
 	ball->render();
 	if (ball->is_stopped())
 		controller->render();
+
+	Points::get_Points().render(camera_ul, camera_lr);
 
 	//wall->render();
 

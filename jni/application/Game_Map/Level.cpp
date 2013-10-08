@@ -1,5 +1,6 @@
 #include "Level.h"
 #include "Tile.h"
+#include "../Points.h"
 #include <cassert>
 #include <fstream>
 
@@ -10,6 +11,8 @@ const float Level::tile_dim = 64.0f;
 
 Level::Level(String lvl_name) {
 	fstream lvl_in("levels\\" + string(lvl_name.c_str()), fstream::in);
+
+	Points::get_Points().reset(2);
 
 	int dim_x, dim_y;
 	lvl_in >> dim_x >> dim_y;
@@ -32,7 +35,8 @@ Level::Level(String lvl_name) {
 		lvl_in >> event_x >> event_y;
 		switch (event_type) {
 		case 0: //Hole_event
-			event_map[int(event_x/tile_dim)][int(event_y/tile_dim)].push_back(new Hole_event(Point2f(event_x, event_y)));
+			hole_pos = Point2f(event_x, event_y);
+			event_map[int(event_x/tile_dim)][int(event_y/tile_dim)].push_back(new Hole_event(hole_pos));
 		}
 	}
 
@@ -119,6 +123,25 @@ void Level::render(Zeni::Point2f pos, float screen_width, float screen_height) {
 				for_each(inner_e[j->first].begin(), inner_e[j->first].end(), [](Ball_event* b){ b->render(); });
 			}
 		}
+	}
+
+	//Render arrows
+	if ((hole_pos.x >= pos.x + (screen_width / 2) || hole_pos.x <= pos.x - (screen_width / 2)) ||
+		(hole_pos.y >= pos.y + (screen_height / 2) || hole_pos.y <= pos.y - (screen_width / 2))) {
+			//Find vector from camera to hole
+			Vector2f v = (hole_pos - pos);
+			float theta = v.theta();
+			Point2f end(pos.x + (screen_width/2)*cos(theta), pos.y + (screen_height/2)*sin(theta));
+			Point2f wing1(pos.x + .95f*(screen_width / 2.0f)*cos(theta + .05f), pos.y + .95f*(screen_height / 2.0f)*sin(theta + .05f));
+			Point2f wing2(pos.x + .95f*(screen_width / 2.0f)*cos(theta - .05f), pos.y + .95f*(screen_height / 2.0f)*sin(theta - .05f));
+
+			auto& cr = get_Colors();
+			Vertex2f_Color pt1(end, cr["red"]);
+			Vertex2f_Color pt2(wing1, cr["yellow"]);
+			Vertex2f_Color pt3(wing2, cr["yellow"]);
+
+			Triangle<Vertex2f_Color> t(pt2, pt1, pt3);
+			get_Video().render(t);
 	}
 }
 

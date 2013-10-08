@@ -11,15 +11,21 @@ private:
 	//Vector2f a_dir;
 	//float a;
 	float a_friction;
-	enum BALL_STATE { MOVING, STOPPED, NONE };
+	enum BALL_STATE { MOVING, STOPPED, NOSTATE };
+	enum BALL_MOD { POWER, FIRE, TRACTION, NOMOD };
 	BALL_STATE state;
+	BALL_MOD mod;
+
+	Zeni::String texture;
+	bool has_overlay;
+	Zeni::String overlay;
 
 	Zeni::Collision::Sphere col_sphere;
 
 	const float max_speed;
 	Ball();
 public:
-	Ball(Zeni::Point2f position_) : /*Collision_circle(position_, 64.0f),*/ position(position_), theta(0.0f), v(0.0f), a_friction(200.0f), state(STOPPED), max_speed(500.0f) { }
+	Ball(Zeni::Point2f position_) : /*Collision_circle(position_, 64.0f),*/texture("ball_1"), mod(NOMOD), has_overlay(false), position(position_), theta(0.0f), v(0.0f), a_friction(200.0f), state(STOPPED), max_speed(500.0f) { }
 
 	bool is_stopped() { return state == STOPPED; }
 	Zeni::Point2f get_position() { return position; }
