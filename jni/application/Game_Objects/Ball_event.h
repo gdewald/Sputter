@@ -15,6 +15,7 @@ public:
 	Ball_event(Zeni::Point2f pos_, Zeni::String t_name_) : pos(pos_), t_name(t_name_), radius(32.0f) { }
 
 	Zeni::Point2f get_position() { return pos; }
+	float get_radius() { return radius; }
 
 	virtual bool is_colliding(Ball* b) {
 		return (Zeni::Vector2f(b->get_position() - pos).magnitude() <= (b->get_radius() + radius));
@@ -30,6 +31,10 @@ private:
 public:
 
 	Hole_event(Zeni::Point2f pos_) : Ball_event(pos_, "hole_1") { }
+
+	virtual bool is_colliding(Ball* b) {
+		return (Zeni::Vector2f(b->get_position() - get_position()).magnitude() <= (get_radius()));
+	}
 
 	virtual void perform_collision(Ball* b) {
 		Zeni::get_Game().pop_state();

@@ -42,7 +42,7 @@ bool Wall_tile::on_collision(Ball* b) {
 			break;
 		else if (b->is_fireball()) {
 			Points::get_Points().wall_break();
-			return true;
+			return false;
 		}
 
 		Points::get_Points().wall_damage();
