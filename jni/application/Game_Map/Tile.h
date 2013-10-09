@@ -40,7 +40,6 @@ private:
 	bool active;
 	TILE_TYPE type;
 
-	float tile_friction = 200.0f;
 	Zeni::Collision::Parallelepiped col_square;
 public:
 	Terrain_tile(const Terrain_tile& t) : id(t.id), active(false) { }

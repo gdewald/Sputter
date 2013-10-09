@@ -23,7 +23,6 @@ Play_State::Play_State(String level_name) : m_time_passed(0.0f) {
 	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_THUMB_X), 4);
 	set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_TRIGGER), 5);
 	set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, 10), 6);
-
 }
 
 Play_State::Play_State() : m_time_passed(0.0f) {

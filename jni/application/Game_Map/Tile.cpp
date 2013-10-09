@@ -56,11 +56,13 @@ bool Wall_tile::on_collision(Ball* b) {
 		if (b->get_speed() < 150.0f)
 			break;
 		else if (b->is_fireball()) {
+			//Break sound
 			Points::get_Points().wall_break();
 			return false;
 		}
 
 		Points::get_Points().wall_damage();
+		
 		//Crunch sound
 		id = WOOD_2;
 		break;

@@ -17,6 +17,8 @@ private:
 	BALL_MOD mod;
 	int mod_num;
 
+	Zeni::String ball_col;
+
 	Zeni::String texture;
 	bool has_overlay;
 	Zeni::String overlay;
@@ -26,7 +28,7 @@ private:
 	const float max_speed;
 	Ball();
 public:
-	Ball(Zeni::Point2f position_) : /*Collision_circle(position_, 64.0f),*/texture("ball_1"), mod(NOMOD), mod_num(0), has_overlay(false), position(position_), theta(0.0f), v(0.0f), a_friction(200.0f), state(STOPPED), max_speed(500.0f) { }
+	Ball(Zeni::Point2f position_) : /*Collision_circle(position_, 64.0f),*/texture("ball_1"), ball_col("white"), mod(NOMOD), mod_num(0), has_overlay(false), position(position_), theta(0.0f), v(0.0f), a_friction(200.0f), state(STOPPED), max_speed(500.0f) { }
 
 	bool is_stopped() { return state == STOPPED; }
 	Zeni::Point2f get_position() { return position; }
@@ -35,9 +37,9 @@ public:
 
 	void set_friction(float val) { a_friction = val; }
 	bool is_fireball() { return mod == FIRE; }
-	void set_fireball() { mod = FIRE; mod_num = 1; }
-	void set_powerball() { mod = POWER; mod_num = 1; }
-	void set_spikeball() { mod = TRACTION; mod_num = 2; }
+	void set_fireball() { mod = FIRE; mod_num = 1; ball_col = "red"; }
+	void set_powerball() { mod = POWER; mod_num = 1; ball_col = "yellow"; }
+	void set_spikeball() { mod = TRACTION; mod_num = 2; ball_col = "green"; }
 
 	//Collision stuff
 	Zeni::Collision::Sphere get_col_sphere() { return Zeni::Collision::Sphere(Zeni::Point3f(position), 32.0f); }

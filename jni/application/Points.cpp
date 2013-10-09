@@ -14,6 +14,8 @@ void Points::reset(int par_) {
 	damaged_walls = 0;
 	hits = 0;
 
+	in_hole = false;
+
 	current_level = Level_Select_State::get_current_level();
 	fstream scores_in(("levels\\" + current_level + ".score").c_str(), fstream::in);
 	if (scores_in.good()) {

@@ -13,6 +13,8 @@ class Points {
 	int broken_walls;
 	int hits;
 
+	bool in_hole;
+
 	Zeni::String current_level;
 	
 	static Points* instance;
@@ -28,9 +30,17 @@ public:
 
 	void save_score();
 
-	void hit() { hits++; }
-	void wall_damage() { damaged_walls++; }
-	void wall_break() { broken_walls++; }
+	void hit() { hits++; calc_pts(); }
+	void wall_damage() { damaged_walls++; calc_pts(); }
+	void wall_break() { broken_walls++; calc_pts(); }
+	void hole() { in_hole = true; calc_pts(); }
+
+	void calc_pts() {
+		int mult;
+		if (hits <= par)
+			mult = (1 + 0.25*(par - hits));
+		pts = mult * (damaged_walls * 50 + broken_walls * 100 + 500 * in_hole);
+	}
 
 	void reset(int par_);
 

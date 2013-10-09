@@ -47,6 +47,7 @@ void Ball::update(const float time_step) {
 }
 
 void Ball::hit(float theta_, float power) {
+	//Hit sound
 	state = MOVING;
 	theta = theta_;
 	v = max_speed*power;
@@ -55,6 +56,7 @@ void Ball::hit(float theta_, float power) {
 	Points::get_Points().hit();
 	if (mod != NOMOD && --mod_num == 0) {
 		mod = NOMOD;
+		ball_col = "white";
 	}
 }
 
@@ -67,7 +69,7 @@ void Ball::render() {
 	Colors& cr = get_Colors();
 	//get_Fonts()["system_36_800x600"].render_text(apple, Vector3f(50.0f, 110.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
 	//get_Fonts()["system_36_800x600"].render_text(potato, Vector3f(50.0f, 130.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
-	render_image(texture, Point2f(position.x - 32.0f, position.y - 32.0f), Point2f(position.x + 32.0f, position.y + 32.0f), 0.0f, 1.0f, position, false, Color());
+	render_image(texture, Point2f(position.x - 32.0f, position.y - 32.0f), Point2f(position.x + 32.0f, position.y + 32.0f), 0.0f, 1.0f, position, false, get_Colors()[ball_col]);
 	if (has_overlay) render_image(overlay, Point2f(position.x - 37.0f, position.y - 37.0f), Point2f(position.x + 90.0f, position.y + 90.0f), 0.0f, 1.0f, position, false, Color());
 }
 

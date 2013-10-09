@@ -25,7 +25,19 @@ HOWTO:  To convert between types, or to downmix to mono,
         (4) Go to File->Export As Ogg Vorbis
 -->
 <Sounds>
-  <hello_world>
-    <filepath>sfx/104469__dkmedic__world</filepath>
-  </hello_world>
+  <ball_hit>
+    <filepath>sfx/59301__laurent__golf-5</filepath>
+  </ball_hit>
+  <ball_hole>
+    <filepath>sfx/20430__agfx__drop-ball-in-cup-3</filepath>
+  </ball_hole>
+  <wall_hit>
+    <filepath>sfx/106986__plingativator__dullmetalhit</filepath>
+  </wall_hit>
+  <wood_hit1>
+    <filepath>sfx/164472__adam-n__crack-of-branch-3</filepath>
+  </wood_hit1>
+  <wood_hit2>
+    <filepath>sfx/66778__kevinkace__crate-break-2</filepath>
+  </wood_hit2>
 </Sounds>

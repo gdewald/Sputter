@@ -37,6 +37,7 @@ public:
 	}
 
 	virtual void perform_collision(Ball* b) {
+		//Hole sound
 		Zeni::get_Game().pop_state();
 		Zeni::get_Game().push_state(new Scoreboard_State());
 	}
@@ -50,6 +51,7 @@ public:
 	Fireball_event(Zeni::Point2f pos_) : Ball_event(pos_, "fire_up") { }
 
 	virtual void perform_collision(Ball* b) {
+		//Powerup sound
 		b->set_fireball();
 	}
 };
@@ -62,6 +64,7 @@ public:
 	Spikeball_event(Zeni::Point2f pos_) : Ball_event(pos_, "spike_up") { }
 
 	virtual void perform_collision(Ball* b) {
+		//Powerup sound
 		b->set_spikeball();
 	}
 };
@@ -74,6 +77,7 @@ public:
 	Powerball_event(Zeni::Point2f pos_) : Ball_event(pos_, "pow_up") { }
 
 	virtual void perform_collision(Ball* b) {
+		//Powerup sound
 		b->set_powerball();
 	}
 };
