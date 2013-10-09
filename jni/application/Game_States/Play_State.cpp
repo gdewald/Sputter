@@ -18,34 +18,32 @@ Play_State::Play_State(String level_name) : m_time_passed(0.0f) {
 	// Map the joystick buttons
 	set_action(Zeni_Input_ID(SDL_KEYDOWN, SDLK_ESCAPE), 1);
 	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, 4), 1);
-	//set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_X /* x-axis */), 2);
-	//set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_Y /* y-axis */), 3);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_LEFTX /* x-axis */), 2);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_LEFTY /* y-axis */), 3);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_TRIGGERLEFT), 4);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_TRIGGERLEFT), 5);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, 10), 6);
-}
-
-Play_State::Play_State() : m_time_passed(0.0f) {
-	set_pausable(true);
-
-	// Inititalize the private members
-	ball = new Ball(Point2f(129.0f, 129.0f));
-	controller = new Controller(ball);
-	level = new Level();
-
-	wall = new Wall(Point2f(100.0f, 100.0f), "hole_1", 20.0f, 40.0f, 1.15f);
-
-	// Map the joystick buttons
-	set_action(Zeni_Input_ID(SDL_KEYDOWN, SDLK_ESCAPE), 1);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, 4), 1);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_LEFTX /* x-axis */), 2);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_LEFTY /* y-axis */), 3);
+	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_RIGHTX /* x-axis */), 2);
+	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_RIGHTY /* y-axis */), 3);
 	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_TRIGGERLEFT), 4);
 	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_TRIGGERRIGHT), 5);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, 10), 6);
+	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, SDL_CONTROLLER_BUTTON_A), 6);
 }
+
+//Play_State::Play_State() : m_time_passed(0.0f) {
+//	set_pausable(true);
+//
+//	// Inititalize the private members
+//	ball = new Ball(Point2f(129.0f, 129.0f));
+//	controller = new Controller(ball);
+//	level = new Level();
+//
+//	wall = new Wall(Point2f(100.0f, 100.0f), "hole_1", 20.0f, 40.0f, 1.15f);
+//
+//	// Map the joystick buttons
+//	set_action(Zeni_Input_ID(SDL_KEYDOWN, SDLK_ESCAPE), 1);
+//	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, 4), 1);
+//	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_LEFTX /* x-axis */), 2);
+//	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_LEFTY /* y-axis */), 3);
+//	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_TRIGGERLEFT), 4);
+//	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_TRIGGERRIGHT), 5);
+//	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, 10), 6);
+//}
 
 void Play_State::on_push() {
 	//get_Game().joy_mouse.enabled = false;
