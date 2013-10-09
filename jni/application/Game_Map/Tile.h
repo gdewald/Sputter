@@ -9,7 +9,7 @@
 enum TERRAIN_ID { GRASS_1, SAND, ICE, NOTERRAIN };
 enum WALL_ID { METAL, WOOD_1, WOOD_2, NOWALL };
 enum TILE_TYPE { START, FINISH, NOTYPE };
-const std::vector<float> TILE_FRICT = { 200.0f, 400.0f, 100.0f };
+const float TILE_FRICT[3] = { 200.0f, 400.0f, 100.0f };
 
 //class Tile_factory {
 //private:
@@ -40,7 +40,6 @@ private:
 	bool active;
 	TILE_TYPE type;
 
-	float tile_friction = 200.0f;
 	Zeni::Collision::Parallelepiped col_square;
 public:
 	Terrain_tile(const Terrain_tile& t) : id(t.id), active(false) { }

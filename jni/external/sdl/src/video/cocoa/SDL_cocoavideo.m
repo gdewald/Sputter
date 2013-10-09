@@ -33,6 +33,7 @@
 #include "SDL_endian.h"
 #include "SDL_cocoavideo.h"
 #include "SDL_cocoashape.h"
+#include "SDL_cocoamessagebox.h"
 #include "SDL_assert.h"
 
 /* Initialization/Query functions */
@@ -71,9 +72,7 @@ Cocoa_CreateDevice(int devindex)
     }
     if (!data) {
         SDL_OutOfMemory();
-        if (device) {
-            SDL_free(device);
-        }
+        SDL_free(device);
         return NULL;
     }
     device->driverdata = data;
@@ -121,6 +120,7 @@ Cocoa_CreateDevice(int devindex)
     device->GL_UnloadLibrary = Cocoa_GL_UnloadLibrary;
     device->GL_CreateContext = Cocoa_GL_CreateContext;
     device->GL_MakeCurrent = Cocoa_GL_MakeCurrent;
+    device->GL_GetDrawableSize = Cocoa_GL_GetDrawableSize;
     device->GL_SetSwapInterval = Cocoa_GL_SetSwapInterval;
     device->GL_GetSwapInterval = Cocoa_GL_GetSwapInterval;
     device->GL_SwapWindow = Cocoa_GL_SwapWindow;
@@ -134,6 +134,8 @@ Cocoa_CreateDevice(int devindex)
     device->SetClipboardText = Cocoa_SetClipboardText;
     device->GetClipboardText = Cocoa_GetClipboardText;
     device->HasClipboardText = Cocoa_HasClipboardText;
+
+    device->ShowMessageBox = Cocoa_ShowMessageBox;
 
     device->free = Cocoa_DeleteDevice;
 

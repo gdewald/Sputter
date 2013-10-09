@@ -4,10 +4,25 @@
 using namespace std;
 using namespace Zeni;
 
-std::map<TERRAIN_ID, Zeni::String> TILE_STR_T{ std::make_pair(GRASS_1, "grass_1"), std::make_pair(SAND, "sand_1"),
-std::make_pair(ICE, "ice_1"), std::make_pair(NOTERRAIN, "") };
-std::map<WALL_ID, Zeni::String> TILE_STR_W{ std::make_pair(METAL, "sheetmetal"), std::make_pair(WOOD_1, "wood_1"), 
-std::make_pair(WOOD_2, "wood_2"), std::make_pair(NOWALL, "") };
+std::map<TERRAIN_ID, Zeni::String> fill_map_t() {
+	std::map<TERRAIN_ID, Zeni::String> m;
+	m[GRASS_1] = "grass_1";
+	m[SAND] = "sand_1";
+	m[ICE] = "ice_1";
+	m[NOTERRAIN] = "";
+	return m;
+}
+std::map<WALL_ID, Zeni::String> fill_map_w() {
+	std::map<WALL_ID, Zeni::String> m;
+	m[METAL] = "sheetmetal";
+	m[WOOD_1] = "wood_1";
+	m[WOOD_2] = "wood_2";
+	m[NOWALL] = "";
+	return m;
+}
+
+std::map<TERRAIN_ID, Zeni::String> TILE_STR_T = fill_map_t(); 
+std::map<WALL_ID, Zeni::String> TILE_STR_W = fill_map_w();
 
 void Tile::render(Point2f ul, Point2f lr, String tile_str) {
 	Video& vr = get_Video();
