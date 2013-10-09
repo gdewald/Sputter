@@ -44,9 +44,6 @@ void Ball::update(const float time_step) {
 		}
 		else if (v < 50) v *= .5f * time_step;
 	}
-	else if (mod != NOMOD && !pickup) {
-		mod = NOMOD;
-	}
 }
 
 void Ball::hit(float theta_, float power) {
@@ -56,7 +53,9 @@ void Ball::hit(float theta_, float power) {
 	if (mod == POWER)
 		v *= 2.0f;
 	Points::get_Points().hit();
-	pickup = false;
+	if (mod != NOMOD && --mod_num == 0) {
+		mod = NOMOD;
+	}
 }
 
 void Ball::rotate(float theta_) {

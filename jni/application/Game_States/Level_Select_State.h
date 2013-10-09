@@ -58,10 +58,14 @@ public:
 	};
 
 	static void push_next_level() {
+		if (level_num + 1 >= num_levels) return;
 		Zeni::get_Game().push_state(new Play_State(level_name[++level_num]));
 	}
 	static void push_current_level() {
 		Zeni::get_Game().push_state(new Play_State(level_name[level_num]));
+	}
+	static Zeni::String get_current_level() {
+		return level_name[level_num];
 	}
 
 	void render() {

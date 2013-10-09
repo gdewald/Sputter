@@ -51,7 +51,7 @@ int main() {
 	}
 	lvl_out << endl;
 	
-	cout << endl << "Enter event type(-1 - end, 0 - hole): ";
+	cout << endl << "Enter event type(-1 - end, 0 - hole, 1 - powerball, 2 - spikeball, 3 - fireball): ";
 	int event;
 	while(cin >> event && event != -1) {
 		float pos_x, pos_y;
