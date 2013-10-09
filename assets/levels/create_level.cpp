@@ -15,6 +15,11 @@ int main() {
 	cin >> filename; 
 	fstream lvl_out(filename.c_str(), fstream::out);
 	
+	int par;
+	cout << endl <<"Enter par: ";
+	cin >> par;
+	lvl_out << par << endl;
+	
 	int dim_x, dim_y;
 	cout << endl << "Enter map dimensions(2 integers): ";
 	cin >> dim_x >> dim_y;
@@ -52,7 +57,7 @@ int main() {
 		float pos_x, pos_y;
 		cin >> pos_x >> pos_y;
 		lvl_out << event << " " << pos_x << " " << pos_y << endl;
-		cout << endl << "Enter event type(-1 - end, 0 - hole): ";
+		cout << endl << "Enter event type(-1 - end, 0 - hole, 1 - powerball, 2 - spikeball, 3 - fireball): ";
 	}
 	lvl_out.close();
 }

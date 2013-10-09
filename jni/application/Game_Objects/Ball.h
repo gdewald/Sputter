@@ -15,6 +15,7 @@ private:
 	enum BALL_MOD { POWER, FIRE, TRACTION, NOMOD };
 	BALL_STATE state;
 	BALL_MOD mod;
+	bool pickup;
 
 	Zeni::String texture;
 	bool has_overlay;
@@ -25,7 +26,7 @@ private:
 	const float max_speed;
 	Ball();
 public:
-	Ball(Zeni::Point2f position_) : /*Collision_circle(position_, 64.0f),*/texture("ball_1"), mod(NOMOD), has_overlay(false), position(position_), theta(0.0f), v(0.0f), a_friction(200.0f), state(STOPPED), max_speed(500.0f) { }
+	Ball(Zeni::Point2f position_) : /*Collision_circle(position_, 64.0f),*/texture("ball_1"), mod(NOMOD), pickup(false), has_overlay(false), position(position_), theta(0.0f), v(0.0f), a_friction(200.0f), state(STOPPED), max_speed(500.0f) { }
 
 	bool is_stopped() { return state == STOPPED; }
 	Zeni::Point2f get_position() { return position; }
@@ -33,6 +34,10 @@ public:
 	float get_speed() { return v; }
 
 	void set_friction(float val) { a_friction = val; }
+	bool is_fireball() { return mod == FIRE; }
+	void set_fireball() { mod = FIRE; pickup = true; }
+	void set_powerball() { mod = POWER; pickup = true; }
+	void set_spikeball() { mod = TRACTION; pickup = true; }
 
 	//Collision stuff
 	Zeni::Collision::Sphere get_col_sphere() { return Zeni::Collision::Sphere(Zeni::Point3f(position), 32.0f); }

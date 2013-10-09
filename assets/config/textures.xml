@@ -45,7 +45,7 @@ The following things are unsupported:
     <filepath>textures/objects/ball_u1.png</filepath>
     <tile>0</tile>
   </ball_u1>
-   <ball_u2>
+  <ball_u2>
     <filepath>textures/objects/ball_u2.png</filepath>
     <tile>0</tile>
   </ball_u2>
@@ -73,6 +73,18 @@ The following things are unsupported:
     <filepath>textures/objects/ball_r2.png</filepath>
     <tile>0</tile>
   </ball_r2>
+  <pow_up>
+    <filepath>textures/objects/pow.png</filepath>
+    <tile>0</tile>
+  </pow_up>
+  <spike_up>
+    <filepath>textures/objects/spike.png</filepath>
+    <tile>0</tile>
+  </spike_up>
+  <fire_up>
+    <filepath>textures/objects/fire.png</filepath>
+    <tile>0</tile>
+  </fire_up>
   <ball_spikes>
     <filepath>textures/objects/ball_spikes.png</filepath>
     <tile>0</tile>

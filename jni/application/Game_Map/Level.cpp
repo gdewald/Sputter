@@ -12,7 +12,9 @@ const float Level::tile_dim = 64.0f;
 Level::Level(String lvl_name) {
 	fstream lvl_in("levels\\" + string(lvl_name.c_str()), fstream::in);
 
-	Points::get_Points().reset(2);
+	int par;
+	lvl_in >> par;
+	Points::get_Points().reset(par);
 
 	int dim_x, dim_y;
 	lvl_in >> dim_x >> dim_y;
@@ -36,7 +38,17 @@ Level::Level(String lvl_name) {
 		switch (event_type) {
 		case 0: //Hole_event
 			hole_pos = Point2f(event_x, event_y);
-			event_map[int(event_x/tile_dim)][int(event_y/tile_dim)].push_back(new Hole_event(hole_pos));
+			event_map[int(event_x / tile_dim)][int(event_y / tile_dim)].push_back(new Hole_event(hole_pos));
+			break;
+		case 1: //Powerball_event
+			event_map[int(event_x / tile_dim)][int(event_y / tile_dim)].push_back(new Powerball_event(Point2f(event_x, event_y)));
+			break;
+		case 2: //Spikeball_event
+			event_map[int(event_x / tile_dim)][int(event_y / tile_dim)].push_back(new Spikeball_event(Point2f(event_x, event_y)));
+			break;
+		case 3: //Fireball_event
+			event_map[int(event_x / tile_dim)][int(event_y / tile_dim)].push_back(new Fireball_event(Point2f(event_x, event_y)));
+			break;
 		}
 	}
 
@@ -101,11 +113,9 @@ void Level::render(Zeni::Point2f pos, float screen_width, float screen_height) {
 		}
 	}
 
-
 	for (int i = ul_x; i < lr_x; i++) {
 		auto& inner_w = wall_map[i];
 		auto& inner_e = event_map[i];
-
 
 		auto ul_w_it = inner_w.upper_bound(ul_y - 1);
 		auto lr_w_it = inner_w.lower_bound(lr_y + 1);
@@ -198,7 +208,11 @@ float Level::check_tile_collisions(Ball* b, float dist) {
 	// Reflect ball if distance is non-zero
 	if (dist > 0.0f) {
 		if (!wall_map[tile_x][tile_y].on_collision(b))
+		{
 			wall_map[tile_x].erase(tile_y);
+			if (b->is_fireball()) return 0.0f;
+		}
+
 		float theta_wall = get_theta_wall(b->get_col_sphere(), col_sphere, final_col_square);
 		b->reflect(theta_wall, dist);
 	}
@@ -214,13 +228,16 @@ void Level::check_event_collisions(Ball* b) {
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			auto& inner = event_map[x_coor + i][y_coor + j];
-			for_each(inner.begin(), inner.end(), [b](Ball_event* e){ if (e->is_colliding(b)) { e->perform_collision(b); }});
+			for (auto it = inner.begin(); it != inner.end();) {
+				if ((*it)->is_colliding(b)) { 
+					(*it)->perform_collision(b);
+					it = inner.erase(it);
+				}
+				else it++;
+			}
 		}
 	}
-
-
 }
-
 
 //find where the sphere should touch the square
 float Level::get_theta_wall(Collision::Sphere col_sphere_new, Collision::Sphere col_sphere_old, Collision::Parallelepiped col_square) {

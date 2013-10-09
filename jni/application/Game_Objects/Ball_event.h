@@ -12,7 +12,7 @@ private:
 	Zeni::String t_name;
 
 public:
-	Ball_event(Zeni::Point2f pos_, Zeni::String t_name_) : pos(pos_), t_name(t_name_) { }
+	Ball_event(Zeni::Point2f pos_, Zeni::String t_name_) : pos(pos_), t_name(t_name_), radius(32.0f) { }
 
 	Zeni::Point2f get_position() { return pos; }
 
@@ -37,13 +37,38 @@ public:
 	}
 };
 
-//class Fireball_event :public Ball_event {
-//
-//};
-//
-//class Spikeball_event : public Ball_event {
-//
-//};
-//class Powerball_event : public Ball_event {
-//
-//};
+class Fireball_event :public Ball_event {
+private:
+
+public:
+
+	Fireball_event(Zeni::Point2f pos_) : Ball_event(pos_, "fire_up") { }
+
+	virtual void perform_collision(Ball* b) {
+		b->set_fireball();
+	}
+};
+
+class Spikeball_event : public Ball_event {
+private:
+
+public:
+
+	Spikeball_event(Zeni::Point2f pos_) : Ball_event(pos_, "spike_up") { }
+
+	virtual void perform_collision(Ball* b) {
+		b->set_spikeball();
+	}
+};
+
+class Powerball_event : public Ball_event {
+private:
+
+public:
+
+	Powerball_event(Zeni::Point2f pos_) : Ball_event(pos_, "pow_up") { }
+
+	virtual void perform_collision(Ball* b) {
+		b->set_powerball();
+	}
+};

@@ -13,7 +13,10 @@ void Ball::update(const float time_step) {
 		
 		position.x += sin(theta) * v * time_step;
 		position.y -= cos(theta) * v * time_step;
-		v -= a_friction * time_step;
+		if (mod == TRACTION) {
+			v -= 200.0f * time_step;
+		}
+		else v -= a_friction * time_step;
 
 		static bool rev = false;
 
@@ -39,7 +42,10 @@ void Ball::update(const float time_step) {
 			state = STOPPED;
 			v = 0;
 		}
-		else if (v < 50) v *= .8f * time_step;
+		else if (v < 50) v *= .5f * time_step;
+	}
+	else if (mod != NOMOD && !pickup) {
+		mod = NOMOD;
 	}
 }
 
@@ -50,6 +56,7 @@ void Ball::hit(float theta_, float power) {
 	if (mod == POWER)
 		v *= 2.0f;
 	Points::get_Points().hit();
+	pickup = false;
 }
 
 void Ball::rotate(float theta_) {
