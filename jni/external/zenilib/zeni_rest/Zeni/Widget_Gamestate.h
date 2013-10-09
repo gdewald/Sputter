@@ -76,8 +76,8 @@ namespace Zeni {
 
     Zeni::Projector2D m_projector;
 
-    bool m_hide_cursor;
-    bool m_grab_input;
+    Window::Mouse_State m_mouse_state;
+    bool m_controller_mouse;
     Color m_clear_color;
   };
 

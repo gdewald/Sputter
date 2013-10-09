@@ -525,7 +525,7 @@ IF EXIST "%VS110COMNTOOLS%" (
   CALL "%VS100COMNTOOLS%vsvars32.bat"
   SET VSVER=vs2010
 ) ELSE (
-  ECHO "Neither Visual Studio 2012 nor 2010 detected."
+  ECHO "Visual Studio 2012 and 2010 were not detected."
   EXIT /B
 ))
 

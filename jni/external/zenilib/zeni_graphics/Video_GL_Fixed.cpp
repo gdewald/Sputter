@@ -614,7 +614,7 @@ namespace Zeni {
   void Video_GL_Fixed::init() {
     Core::assert_no_error();
 
-    std::cout << "Initializing OpenGL" << std::endl;
+    std::cerr << "Initializing OpenGL" << std::endl;
 
 #ifndef TEMP_DISABLE
     //double buffer, no stencil, no accumulation buffer
@@ -773,6 +773,15 @@ namespace Zeni {
 
       ptr.v = SDL_GL_GetProcAddress("glBufferDataARB");
       m_pglBufferDataARB = ptr.pglBufferDataARB;
+
+      if(!(m_pglBindBufferARB && m_pglDeleteBuffersARB && m_pglGenBuffersARB && m_pglBufferDataARB)) {
+        m_pglBindBufferARB = 0;
+        m_pglDeleteBuffersARB = 0;
+        m_pglGenBuffersARB = 0;
+        m_pglBufferDataARB = 0;
+
+        std::cerr << "Performance Warning:  Your graphics card does not offer Vertex Buffer Objects (VBO) in OpenGL.\n";
+      }
     }
     else
       std::cerr << "Performance Warning:  Your graphics card does not offer Vertex Buffer Objects (VBO) in OpenGL.\n";
