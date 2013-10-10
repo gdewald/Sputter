@@ -2,11 +2,7 @@
 
 using namespace Zeni;
 
-void Instructions_State::on_key(const SDL_KeyboardEvent &event)
- {
-		if (event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED)
-			get_Game().pop_state();
-	}
+Zeni::String Instructions_State::image_name = "goals";
 
 void Instructions_State::render() {
 	Widget_Gamestate::render();
@@ -15,11 +11,11 @@ void Instructions_State::render() {
 	Zeni::Video& vr = get_Video();
 	int w = get_Window().get_height();
 
-	fr.render_text("Controls",
-		Point2f(400.0f, 300.0f - 0.5f * fr.get_text_height()),
-		get_Colors()["title_text"],
-		ZENI_CENTER);
+	//fr.render_text("Controls",
+	//	Point2f(400.0f, 300.0f - 0.5f * fr.get_text_height()),
+	//	get_Colors()["title_text"],
+	//	ZENI_CENTER);
 
-	render_image("controls", Point2f(), Point2f(w, w));
+	render_image(image_name, Point2f(100.0f, 50.0f), Point2f(612.0f, 562.0f));
 
 }

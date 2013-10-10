@@ -52,6 +52,7 @@ public:
 
 	virtual void perform_collision(Ball* b) {
 		//Powerup sound
+		Zeni::play_sound("powerup_pew");
 		b->set_fireball();
 	}
 };
@@ -65,6 +66,7 @@ public:
 
 	virtual void perform_collision(Ball* b) {
 		//Powerup sound
+		Zeni::play_sound("powerup_pew");
 		b->set_spikeball();
 	}
 };
@@ -78,6 +80,7 @@ public:
 
 	virtual void perform_collision(Ball* b) {
 		//Powerup sound
+		Zeni::play_sound("powerup_pew");
 		b->set_powerball();
 	}
 };

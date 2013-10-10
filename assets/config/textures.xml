@@ -118,7 +118,19 @@ The following things are unsupported:
 	<tile>1</tile>
   </wood_2>
   <controls>
-    <filepath>textures/controls.png</filepath>
+    <filepath>textures/instructions/controls.png</filepath>
 	<tile>0</tile>
   </controls>
+  <goals>
+    <filepath>textures/instructions/goals.png</filepath>
+	<tile>0</tile>
+  </goals>
+  <terrains>
+    <filepath>textures/instructions/terrains.png</filepath>
+	<tile>0</tile>
+  </terrains>
+  <powerups>
+    <filepath>textures/instructions/upgrades.png</filepath>
+	<tile>0</tile>
+  </powerups>
 </Textures>

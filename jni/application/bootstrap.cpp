@@ -17,10 +17,20 @@
 using namespace std;
 using namespace Zeni;
 
+class Blue_Title_State : public Title_State<Level_Select_State, Instructions_State> {
+public:
+	void render() {
+		Title_State::render();
+	}
+	Blue_Title_State(Zeni::String title) : Title_State<Level_Select_State, Instructions_State>(title) {
+		Zeni::get_Video().set_clear_Color(Zeni::Color(0, 0, 1, 1));
+	}
+};
+
 class Bootstrap {
   class Gamestate_One_Initializer : public Gamestate_Zero_Initializer {
     virtual Gamestate_Base * operator()() {
-      Window::set_title("Placeholder");
+      Window::set_title("Sputter");
 
 	  get_Controllers();
       get_Video();
@@ -28,7 +38,7 @@ class Bootstrap {
       get_Fonts();
       get_Sounds();
 
-      return new Title_State<Level_Select_State, Instructions_State>("Placeholder");
+	  return new Blue_Title_State("Sputter");
 	  //return new Title_State<Test_State, Instructions_State>("Placeholder");
 	  //return new Title_State<Tutorial_State, Instructions_State>("Putt-putt\nHell");
 	}

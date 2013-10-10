@@ -54,12 +54,18 @@ bool Wall_tile::on_collision(Ball* b) {
 		play_sound("wall_hit");
 		break;
 	case WOOD_1:
+		if (b->is_fireball()) {
+			//Fire sound
+			play_sound("fire");
+			Points::get_Points().wall_break();
+			return false;
+		}
 		if (b->get_speed() < 150.0f)
 			break;
-		else if (b->is_fireball()) {
-			//Break sound
+		else if (b->get_speed() > 1200.0f) {
 			play_sound("wood_hit2");
 			Points::get_Points().wall_break();
+			//Break sound
 			return false;
 		}
 
@@ -70,6 +76,12 @@ bool Wall_tile::on_collision(Ball* b) {
 		id = WOOD_2;
 		break;
 	case WOOD_2:
+		if (b->is_fireball()) {
+			//Fire sound
+			play_sound("fire");
+			Points::get_Points().wall_break();
+			return false;
+		}
 		play_sound("wood_hit2");
 		Points::get_Points().wall_break();
 		//Break sound

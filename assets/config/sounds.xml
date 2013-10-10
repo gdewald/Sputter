@@ -40,4 +40,10 @@ HOWTO:  To convert between types, or to downmix to mono,
   <wood_hit2>
     <filepath>sfx/66778__kevinkace__crate-break-2</filepath>
   </wood_hit2>
+  <fire>
+      <filepath>sfx/166550__nic3-one__spray-burst-fire</filepath>
+  </fire>
+  <powerup_pew>
+        <filepath>sfx/155001__liorcali__pistol-pew</filepath>
+  </powerup_pew>
 </Sounds>

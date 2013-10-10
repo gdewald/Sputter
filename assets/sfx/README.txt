@@ -32,3 +32,17 @@ Creative Commons Attribution License:
   http://creativecommons.org/licenses/by/3.0/
 According to:
   http://www.freesound.org/people/laurent/sounds/59301/
+  
+File 166550__nic3-one__spray-burst-fire.ogg is
+copyright by Nic3_one and is licensed under a
+Creative Commons 0 License:
+  http://creativecommons.org/publicdomain/zero/1.0/
+According to:
+  http://www.freesound.org/people/Nic3_one/sounds/166550/
+  
+File 155001__liorcali__pistol-pew.ogg is
+copyright by liorcali and is licensed under a
+Creative Commons 0 License:
+  http://creativecommons.org/publicdomain/zero/1.0/
+According to:
+  www.freesound.org/people/liorcali/sounds/155001/

@@ -7,17 +7,18 @@ using namespace std;
 
 void Controller::process_inputs() {
 	spread = 3.14f / 32;
-	if (ltr > -1.0f) spread += (ltr + 1.0f)*3.14f / 16;
-	range_mult = ltr + 2.0f;
-	range_base = 5.0f + (rtr + 1.0f)*100.0f / 2;
+	if (ltr > 0.0f) spread += (ltr + 1.0f)*3.14f / 16;
+	range_mult = ltr + 1.0f;
+	range_base = 20.0f + (rtr)*100.0f;
 	theta = -(atan2f(x, y) - 3.14f);
 }
 float temp = 0;
+
 void Controller::fire() {
 	float delta_theta = ((rand() % int((spread/3.14f)* 90.0f))*3.14)/180.0f - spread;
 	temp = delta_theta;
 	float final_theta = theta + delta_theta;
-	if (ball->is_stopped())
+	if (ball->is_stopped() && range_base > 20.0f)
 		ball->hit(final_theta, range_mult*range_base/105.0f);
 }
 

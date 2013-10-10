@@ -44,6 +44,8 @@ public:
 		m_widgets.lend_Widget(next);
 		m_widgets.lend_Widget(back);
 		m_widgets.lend_Widget(retry);
+		Zeni::get_Video().set_clear_Color(Zeni::Color(0, 0, 1, 1));
+
 	};
 
 	void render();

@@ -52,6 +52,7 @@ public:
 		m_widgets.lend_Widget(accept);
 		m_widgets.lend_Widget(fwd);
 		m_widgets.lend_Widget(back);
+		Zeni::get_Video().set_clear_Color(Zeni::Color(0, 0, 1, 1));
 	};
 
 	static void push_next_level() {
@@ -68,7 +69,8 @@ public:
 	void render() {
 		Zeni::Widget_Gamestate::render();
 		//render_image(level_name[i], Zeni::Point2f(200.0f, 100.0f), Zeni::Point2f(380.0f, 360.0f), 0.0f, 1.0f, Zeni::Point2f(), false, Color());
-		Zeni::get_Fonts()["system_36_800x600"].render_text(level_name[level_num], Zeni::Vector3f((380.0f + 200.0f)/2.0f, (100.0f + 360.0f)/2.0f, 0.0f), Zeni::Vector3f(1, 0, 0), Zeni::Vector3f(0, 1, 0), Zeni::get_Colors()["white"]);
+		Zeni::get_Fonts()["system_36_800x600"].render_text("Level " + Zeni::itoa(level_num + 1), Zeni::Vector3f((240.0f + 200.0f) / 2.0f, (100.0f + 260.0f) / 2.0f, 0.0f), Zeni::Vector3f(1, 0, 0), Zeni::Vector3f(0, 1, 0), Zeni::get_Colors()["white"]);
+		Zeni::get_Fonts()["system_36_800x600"].render_text(level_name[level_num], Zeni::Vector3f((240.0f + 200.0f) / 2.0f, (100.0f + 260.0f) / 2.0f + 50.0f, 0.0f), Zeni::Vector3f(1, 0, 0), Zeni::Vector3f(0, 1, 0), Zeni::get_Colors()["white"]);
 		//get_Fonts()["system_36_800x600"].render_text(potato, Vector3f(50.0f, 130.0f, 0), Vector3f(1, 0, 0), Vector3f(0, 1, 0), cr["white"]);
 	}
 };
