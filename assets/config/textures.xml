@@ -117,8 +117,8 @@ The following things are unsupported:
 	<filepath>textures/walls/wood_2.png</filepath>
 	<tile>1</tile>
   </wood_2>
-  <logo>
-    <filepath>textures/logo.png</filepath>
+  <controls>
+    <filepath>textures/controls.png</filepath>
 	<tile>0</tile>
-  </logo>
+  </controls>
 </Textures>

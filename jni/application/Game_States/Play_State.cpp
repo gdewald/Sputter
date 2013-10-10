@@ -13,42 +13,28 @@ Play_State::Play_State(String level_name) : m_time_passed(0.0f) {
 	controller = new Controller(ball);
 	level = new Level(level_name);
 
+	get_Controllers();
+
 	wall = new Wall(Point2f(100.0f, 100.0f), "hole_1", 20.0f, 40.0f, 1.15f);
 
 	// Map the joystick buttons
 	set_action(Zeni_Input_ID(SDL_KEYDOWN, SDLK_ESCAPE), 1);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, 4), 1);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_RIGHTX /* x-axis */), 2);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_RIGHTY /* y-axis */), 3);
+	//set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, 4), 1);
+	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_LEFTX /* x-axis */), 2);
+	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_LEFTY /* y-axis */), 3);
 	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_TRIGGERLEFT), 4);
 	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_TRIGGERRIGHT), 5);
-	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, SDL_CONTROLLER_BUTTON_A), 6);
+	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, SDL_CONTROLLER_BUTTON_B), 6);
 }
 
-//Play_State::Play_State() : m_time_passed(0.0f) {
-//	set_pausable(true);
-//
-//	// Inititalize the private members
-//	ball = new Ball(Point2f(129.0f, 129.0f));
-//	controller = new Controller(ball);
-//	level = new Level();
-//
-//	wall = new Wall(Point2f(100.0f, 100.0f), "hole_1", 20.0f, 40.0f, 1.15f);
-//
-//	// Map the joystick buttons
-//	set_action(Zeni_Input_ID(SDL_KEYDOWN, SDLK_ESCAPE), 1);
-//	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, 4), 1);
-//	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_LEFTX /* x-axis */), 2);
-//	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_LEFTY /* y-axis */), 3);
-//	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_TRIGGERLEFT), 4);
-//	set_action(Zeni_Input_ID(SDL_CONTROLLERAXISMOTION, SDL_CONTROLLER_AXIS_TRIGGERRIGHT), 5);
-//	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, 10), 6);
-//}
+Play_State::Play_State() : Play_State("level_1"){
+}
 
 void Play_State::on_push() {
-	//get_Game().joy_mouse.enabled = false;
+	//gett_Game().joy_mouse.enabled = false;
 	//get_Window().mouse_hide(true);
-	get_Window().set_mouse_state(Window::MOUSE_HIDDEN);
+	get_Window().set_mouse_state(Window::MOUSE_GRABBED_AND_HIDDEN);
+	get_Game().controller_mouse.enabled = false;
 
 	m_chrono.start();
 }
@@ -57,21 +43,26 @@ void Play_State::on_pop() {
 	//get_Game().joy_mouse.enabled = true;
 	//get_Window().mouse_hide(false);
 	get_Window().set_mouse_state(Window::MOUSE_NORMAL);
+	get_Game().controller_mouse.enabled = true;
 	m_chrono.stop();
 }
 void Play_State::on_cover() {
 	//get_Game().joy_mouse.enabled = true;
 	//get_Window().mouse_hide(false);
 	get_Window().set_mouse_state(Window::MOUSE_NORMAL);
+	get_Controllers().reset_vibration_all();
+	get_Game().controller_mouse.enabled = true;
 }
 
 void Play_State::on_uncover() {
 	//get_Game().joy_mouse.enabled = false;
 	//get_Window().mouse_hide(true);
 	get_Window().set_mouse_state(Window::MOUSE_HIDDEN);
+	get_Controllers().reset_vibration_all();
+	get_Game().controller_mouse.enabled = false;
 }
 
-void Play_State::on_event(const Zeni_Input_ID &, const float &confidence, const int &action) {
+void Play_State::on_event(const Zeni_Input_ID &id, const float &confidence, const int &action) {
 	switch (action) {
 	case 1:
 		if (confidence == 1.0f) {

@@ -22,6 +22,7 @@ class Bootstrap {
     virtual Gamestate_Base * operator()() {
       Window::set_title("Placeholder");
 
+	  get_Controllers();
       get_Video();
       get_Textures();
       get_Fonts();

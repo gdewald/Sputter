@@ -14,9 +14,9 @@ private:
 	float m_time_passed;
 
 public:
-	//Play_State();
+	Play_State();
 	Play_State(Zeni::String level_name);
-	void on_event(const Zeni::Zeni_Input_ID&, const float& confidence, const int& action);
+	void on_event(const Zeni::Zeni_Input_ID& id, const float& confidence, const int& action);
 	void on_push();
 	void on_pop();
 	void on_cover();

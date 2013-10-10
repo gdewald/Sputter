@@ -12,17 +12,14 @@ void Instructions_State::render() {
 	Widget_Gamestate::render();
 
 	Zeni::Font &fr = get_Fonts()["title"];
+	Zeni::Video& vr = get_Video();
+	int w = get_Window().get_height();
 
-	fr.render_text(
-#if defined(_WINDOWS)
-		"ALT+F4"
-#elif defined(_MACOSX)
-		"Apple+Q"
-#else
-		"Ctrl+Q"
-#endif
-		" to Quit",
+	fr.render_text("Controls",
 		Point2f(400.0f, 300.0f - 0.5f * fr.get_text_height()),
 		get_Colors()["title_text"],
 		ZENI_CENTER);
+
+	render_image("controls", Point2f(), Point2f(w, w));
+
 }

@@ -48,6 +48,7 @@ void Ball::update(const float time_step) {
 
 void Ball::hit(float theta_, float power) {
 	//Hit sound
+	play_sound("ball_hit");
 	state = MOVING;
 	theta = theta_;
 	v = max_speed*power;

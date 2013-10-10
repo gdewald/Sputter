@@ -37,9 +37,9 @@ public:
 
 	void set_friction(float val) { a_friction = val; }
 	bool is_fireball() { return mod == FIRE; }
-	void set_fireball() { mod = FIRE; mod_num = 1; ball_col = "red"; }
-	void set_powerball() { mod = POWER; mod_num = 1; ball_col = "yellow"; }
-	void set_spikeball() { mod = TRACTION; mod_num = 2; ball_col = "green"; }
+	void set_fireball() { mod = FIRE; mod_num = 2; ball_col = "red"; }
+	void set_powerball() { mod = POWER; mod_num = 2; ball_col = "yellow"; }
+	void set_spikeball() { mod = TRACTION; mod_num = 3; ball_col = "green"; }
 
 	//Collision stuff
 	Zeni::Collision::Sphere get_col_sphere() { return Zeni::Collision::Sphere(Zeni::Point3f(position), 32.0f); }

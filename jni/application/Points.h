@@ -36,9 +36,7 @@ public:
 	void hole() { in_hole = true; calc_pts(); }
 
 	void calc_pts() {
-		int mult;
-		if (hits <= par)
-			mult = (1 + 0.25*(par - hits));
+		float mult = (1 + 0.1*(par - hits));
 		pts = mult * (damaged_walls * 50 + broken_walls * 100 + 500 * in_hole);
 	}
 
