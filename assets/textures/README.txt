@@ -1,1 +1,0 @@
-File controls.png is licensed under a Microsoft Permissive License a copy of which is included in the file folder

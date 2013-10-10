@@ -27,7 +27,8 @@ Play_State::Play_State(String level_name) : m_time_passed(0.0f) {
 	set_action(Zeni_Input_ID(SDL_CONTROLLERBUTTONDOWN, SDL_CONTROLLER_BUTTON_B), 6);
 }
 
-Play_State::Play_State() : Play_State("level_1"){
+Play_State::Play_State() {
+	Play_State("level_1");
 }
 
 void Play_State::on_push() {
