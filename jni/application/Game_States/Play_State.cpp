@@ -104,9 +104,22 @@ void Play_State::perform_logic() {
 	SDL_Delay(5);
 
 	const float time_passed = m_chrono.seconds();
-	const float time_step = time_passed - m_time_passed;
+	float time_step = time_passed - m_time_passed;
 	m_time_passed = time_passed;
 
+	const float max_timestep = 1.0f / 20.0f;
+	const int max_timesteps = 10;
+	if (time_step / max_timestep > max_timesteps)
+		time_step = max_timesteps * max_timestep;
+
+	while (time_step > max_timestep) {
+		step(max_timestep);
+		time_step -= max_timestep;
+	}
+	step(max_timestep);
+}
+
+void Play_State::step(float time_step) {
 	//Only let the ball be controlled when it is stopped
 	if (ball->is_stopped())
 		controller->process_inputs();

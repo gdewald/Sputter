@@ -22,5 +22,6 @@ public:
 	void on_cover();
 	void on_uncover();
 	void perform_logic();
+	void step(float m_timestep);
 	void render();
 };
