@@ -29,6 +29,7 @@ private:
 	Ball();
 public:
 	Ball(Zeni::Point2f position_) : /*Collision_circle(position_, 64.0f),*/texture("ball_1"), ball_col("white"), mod(NOMOD), mod_num(0), has_overlay(false), position(position_), theta(0.0f), v(0.0f), a_friction(200.0f), state(STOPPED), max_speed(500.0f) { }
+	void set_position(Zeni::Point2f position_) { position = position_; }
 
 	bool is_stopped() { return state == STOPPED; }
 	Zeni::Point2f get_position() { return position; }

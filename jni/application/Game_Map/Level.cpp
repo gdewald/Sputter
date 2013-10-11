@@ -9,7 +9,7 @@ using namespace std;
 
 const float Level::tile_dim = 64.0f;
 
-Level::Level(String lvl_name) {
+Level::Level(String lvl_name, Ball* b) {
 	fstream lvl_in("levels\\" + string(lvl_name.c_str()), fstream::in);
 
 	int par;
@@ -48,6 +48,9 @@ Level::Level(String lvl_name) {
 			break;
 		case 3: //Fireball_event
 			event_map[int(event_x / tile_dim)][int(event_y / tile_dim)].push_back(new Fireball_event(Point2f(event_x, event_y)));
+			break;
+		case 4:
+			b->set_position(Point2f(event_x, event_y));
 			break;
 		}
 	}

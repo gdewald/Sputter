@@ -3,6 +3,7 @@
 #include <zenilib.h>
 #include "../Game_States/Scoreboard_State.h"
 #include "Ball.h"
+#include "../Points.h"
 
 class Ball_event {
 private:
@@ -33,6 +34,7 @@ public:
 	Hole_event(Zeni::Point2f pos_) : Ball_event(pos_, "hole_1") { }
 
 	virtual bool is_colliding(Ball* b) {
+		Points::get_Points().hole();
 		return (Zeni::Vector2f(b->get_position() - get_position()).magnitude() <= (get_radius()));
 	}
 

@@ -31,7 +31,7 @@ public:
 	//Default level
 	Level();
 	//Level from file
-	Level(Zeni::String lvl_name);
+	Level(Zeni::String lvl_name, Ball* b);
 
 	//Render the visible tiles
 	void render(Zeni::Point2f pos, float screen_width, float screen_height);

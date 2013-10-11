@@ -51,13 +51,13 @@ int main() {
 	}
 	lvl_out << endl;
 	
-	cout << endl << "Enter event type(-1 - end, 0 - hole, 1 - powerball, 2 - spikeball, 3 - fireball): ";
+	cout << endl << "Enter event type(-1 - end, 0 - hole, 1 - powerball, 2 - spikeball, 3 - fireball, 4 - spawn): ";
 	int event;
 	while(cin >> event && event != -1) {
 		float pos_x, pos_y;
 		cin >> pos_x >> pos_y;
 		lvl_out << event << " " << pos_x << " " << pos_y << endl;
-		cout << endl << "Enter event type(-1 - end, 0 - hole, 1 - powerball, 2 - spikeball, 3 - fireball): ";
+		cout << endl << "Enter event type(-1 - end, 0 - hole, 1 - powerball, 2 - spikeball, 3 - fireball, 4 - spawn): ";
 	}
 	lvl_out.close();
 }

@@ -6,8 +6,8 @@
 #include "Play_State.h"
 
 extern int level_num;
-const int num_levels = 3;
-const Zeni::String level_name[num_levels] = { "level_1", "level_2", "level_3" };
+const int num_levels = 4;
+const Zeni::String level_name[num_levels] = { "Sahara", "Flames", "Slingshot", "Ricochet" };
 
 class Accept_button : public Zeni::Text_Button {
 private:
@@ -27,6 +27,7 @@ public:
 		level_num--;
 		if (level_num < 0) level_num = 0;
 	}
+
 };
 
 class Forward_button : public Zeni::Text_Button {

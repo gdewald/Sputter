@@ -11,7 +11,7 @@ Play_State::Play_State(String level_name) : m_time_passed(0.0f) {
 	// Inititalize the private members
 	ball = new Ball(Point2f(129.0f, 129.0f));
 	controller = new Controller(ball);
-	level = new Level(level_name);
+	level = new Level(level_name, ball);
 
 	get_Controllers();
 
