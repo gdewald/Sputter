@@ -79,7 +79,7 @@ float Ball::move_from_col(Collision::Sphere col_sphere, Collision::Parallelepipe
 	Collision::Sphere s = get_col_sphere();
 
 	if(s.intersects(col_square)) {
-		float step = 0.001 * v;
+		float step = 0.01 * v;
 		dist += step;
 		position.x -= sin(theta) * step;
 		position.y += cos(theta) * step;
